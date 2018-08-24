@@ -27,6 +27,7 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new FallbackIntentHandler(),
                         new HelpIntentHandler(),
                         new LaunchRequestHandler(),
+                        new BeltPatternIntentHandler(),
                         new PatternDiagramIntentHandler(),
                         new PatternHistoryIntentHandler(),
                         new PatternInfoIntentHandler(),
@@ -35,6 +36,7 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new SessionEndedRequestHandler(),
                         new StopIntentHandler())
                 // Add your skill id below
+                // TODO: Register skill id with stream handler.
                 //.withSkillId("")
                 .build();
     }
