@@ -14,14 +14,24 @@
 package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
+import com.amazon.ask.model.*;
+import com.amazon.ask.response.ResponseBuilder;
+import com.eames.taekwondo.model.Pattern;
+import com.eames.taekwondo.model.Patterns;
 
+import java.util.Map;
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class PatternStepCountIntentHandler implements RequestHandler {
+/**
+ * This is the handler for the 'pattern step count' skill.
+ */
+public class PatternStepCountIntentHandler extends IntentHandler {
+
+    /*
+     * Implemented {@link RequestHandler} operations
+     */
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -30,10 +40,52 @@ public class PatternStepCountIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Step Count";
-       return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
-                .build();
+
+        // Grab the 'pattern' slot from the input.
+        Request request = input.getRequestEnvelope().getRequest();
+        IntentRequest intentRequest = (IntentRequest) request;
+        Intent intent = intentRequest.getIntent();
+        Map<String, Slot> slots = intent.getSlots();
+        Slot patternSlot = slots.get(PATTERN_SLOT);
+
+        // The speech and display text to return.
+        StringBuilder speechSB = new StringBuilder();
+        StringBuilder cardSB = null;
+
+        // A pattern was passed in.
+        if (patternSlot != null) {
+
+            // Get the pattern key (i.e. the slot value).
+            String patternKey = patternSlot.getValue();
+
+            // Get the TKD pattern from the name passed in.
+            Pattern pattern = Patterns.getPatternByKey(patternKey);
+            if (pattern != null) {
+
+                speechSB.append("The " + pattern.getPhoneticName() + " pattern has " + pattern.getMovementCount() + " movements.");
+            }
+
+            // No such pattern.
+            else {
+                speechSB.append("Sorry, but I do not recognize the " + patternKey + " pattern.");
+
+                cardSB = new StringBuilder();
+                cardSB.append("Could not find a pattern with the key: " + patternKey);
+            }
+        }
+
+        // No pattern was given.
+        else {
+            speechSB.append("Sorry, but your request did not specify a pattern.");
+        }
+
+        // Construct a response builder and add the speech string to it.
+        ResponseBuilder responseBuilder = input.getResponseBuilder()
+                .withSpeech(speechSB.toString());
+        if (cardSB != null)
+            responseBuilder.withSimpleCard(SKILL_NAME, cardSB.toString());
+
+        // Build and return the response.
+        return responseBuilder.build();
     }
 }
