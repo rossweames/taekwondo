@@ -11,8 +11,8 @@ public abstract class Patterns {
     /**
      * The patterns
      */
-    public static final Pattern SA_JU_JIRU_JI = new Pattern("Sajujirugi","Sa-Ju Jiru-Gi", "sah-jew gear-oo-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 7);
-    public static final Pattern SA_JU_MAK_JI = new Pattern("Sajumakgi","Sa-Ju Mak-Gi", "sah-jew mock-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 8);
+    public static final Pattern SA_JU_JIRU_JI = new Pattern("sajujirugi","Sa-Ju Jiru-Gi", "sah-jew gear-oo-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 7);
+    public static final Pattern SA_JU_MAK_JI = new Pattern("sajumakgi","Sa-Ju Mak-Gi", "sah-jew mock-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 8);
     public static final Pattern CHON_JI = new Pattern("chonji", "Chon-Ji", "chun-gee", Belts.NINTH_GUP, PatternDiagrams.CROSS, 19);
     public static final Pattern DAN_GUN = new Pattern("dangun","Dan-Gun", "don-goon", Belts.EIGHTH_GUP, PatternDiagrams.CAPITAL_I, 21);
     public static final Pattern DO_SAN = new Pattern("dosan","Do-San", "doe-sahn", Belts.SEVENTH_GUP, PatternDiagrams.STAIR_STEP, 24);
@@ -49,7 +49,7 @@ public abstract class Patterns {
     /**
      * The static initialization block
      */
-    {
+    static {
         // Fill the pattern map.
         patterns.put(SA_JU_JIRU_JI.getKey(), SA_JU_JIRU_JI);
         patterns.put(SA_JU_MAK_JI.getKey(), SA_JU_MAK_JI);
