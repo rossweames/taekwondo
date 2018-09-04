@@ -21,7 +21,7 @@ public abstract class Patterns {
     public static final Pattern JOONG_GUN = new Pattern("joonggun","Joong-Gun", "joon-goon", Belts.FOURTH_GUP, PatternDiagrams.CAPITAL_I, 32);
     public static final Pattern TOI_GYE = new Pattern("toigye","Toi-Gye", "tay-gay", Belts.THIRD_GUP, PatternDiagrams.SCHOLAR_SIGN, 38);
     public static final Pattern HWA_RANG = new Pattern("hwarang","Hwa-Rang", "wah-rahng", Belts.SECOND_GUP, PatternDiagrams.CAPITAL_I, 29);
-    public static final Pattern SA_JU_TUL_GI = new Pattern("Sajutulgi","Sa-Ju Tul-Gi", "sah-jew tool-gee", Belts.SECOND_GUP, PatternDiagrams.CROSS, 4);
+    public static final Pattern SA_JU_TUL_GI = new Pattern("sajutulgi","Sa-Ju Tul-Gi", "sah-jew tool-gee", Belts.SECOND_GUP, PatternDiagrams.CROSS, 4);
     public static final Pattern CHOONG_MO = new Pattern("choongmoo","Choong-Moo", "shoo-moo", Belts.FIRST_GUP, PatternDiagrams.CAPITAL_I, 30);
     // TODO: Need to specify the correct pattern diagram and steps for the following patterns:
     public static final Pattern KWANG_GAE = new Pattern("kwanggae","Kwang-Gae", "kwon-gay", Belts.FIRST_DAN, PatternDiagrams.SCHOLAR_SIGN, 45);
