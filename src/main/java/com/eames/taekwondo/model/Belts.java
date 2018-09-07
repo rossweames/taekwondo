@@ -39,7 +39,7 @@ public abstract class Belts {
     /**
      * The static initialization block
      */
-    {
+    static {
         // Fill the belt map.
         belts.put(TENTH_GUP.getKey(), TENTH_GUP);
         belts.put(NINTH_GUP.getKey(), NINTH_GUP);

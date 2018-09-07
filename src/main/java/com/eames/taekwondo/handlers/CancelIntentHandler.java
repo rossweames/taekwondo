@@ -30,10 +30,10 @@ public class CancelIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Goodbye";
+        String speechText = "Goodbye from TaeKwon-Do Patterns";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
+                .withSimpleCard("TaeKwon-Do - Cancel", speechText)
                 .build();
     }
 }

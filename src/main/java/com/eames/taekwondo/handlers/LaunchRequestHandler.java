@@ -34,7 +34,7 @@ public class LaunchRequestHandler implements RequestHandler {
         String speechText = "Welcome to the TaeKwon-Do Patterns skill.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
+                .withSimpleCard("TaeKwon-Do - Launch", speechText)
                 .withReprompt(speechText)
                 .build();
     }
