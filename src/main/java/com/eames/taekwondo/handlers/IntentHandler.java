@@ -7,7 +7,7 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.slu.entityresolution.*;
-import com.eames.taekwondo.handlers.exception.PatternNotFoundException;
+import com.eames.taekwondo.handlers.exception.*;
 import com.eames.taekwondo.model.Pattern;
 import com.eames.taekwondo.model.Patterns;
 
@@ -16,6 +16,8 @@ import java.util.Map;
 
 /**
  * This abstract class is the base class for all intent handlers for this skill.
+ *
+ * TODO: Need unit tests for this class.
  */
 abstract class IntentHandler implements RequestHandler {
 
@@ -30,115 +32,109 @@ abstract class IntentHandler implements RequestHandler {
     private static final String PATTERN_SLOT = "TKDPattern";
 
     /**
-     * The pattern name slot
-     */
-    private static final String SLOT_PATTERN_NAME = "TKDPatternName";
-
-    /**
      * Gets the appropriate {@link Pattern} from the input.
      *
      * @param input the request input.
      * @return the {@link Pattern}
+     * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
+     * @throws MissingSlotValueException if no value has been included in the input
+     * @throws UnrecognizedSlotValueException if the value provided does not match any known values
+     * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      * @throws PatternNotFoundException if the pattern cannot be resolved
      */
     static protected Pattern getPattern(HandlerInput input)
-        throws PatternNotFoundException {
+        throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
+            UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
         // Get the pattern key from the input.
-        String patternKey = getPatternKey(input);
+        // Throws: SlotNotFoundException, MissingSlotValueException,
+        //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
+        String patternKey = getSlotValue(input, PATTERN_SLOT);
 
-        // A pattern key was passed in.
-        if (patternKey != null) {
+        // Get the TKD pattern from the name passed in.
+        Pattern pattern = Patterns.getPatternByKey(patternKey);
+        if (pattern != null) {
 
-            // Get the TKD pattern from the name passed in.
-            Pattern pattern = Patterns.getPatternByKey(patternKey);
-            if (pattern != null) {
-
-                // Return the pattern.
-                return pattern;
-            }
-
-            // No such pattern.
-            else {
-
-                // Construct the error message.
-                final StringBuilder sb = new StringBuilder()
-                        .append("Sorry, but I do not recognize the ")
-                        .append(patternKey)
-                        .append(" pattern.");
-
-                // Throw an exception.
-                throw new PatternNotFoundException(sb.toString());
-            }
+            // Return the pattern.
+            return pattern;
         }
 
-        // No pattern was given.
+        // No such pattern.
         else {
 
             // Throw an exception.
-            throw new PatternNotFoundException("Sorry, but your request did not specify a pattern.");
+            throw new PatternNotFoundException(patternKey);
         }
     }
 
     /**
-     * Gets the pattern key from the input.
+     * Gets the value of the given slot.
      *
      * @param input the request input.
-     * @return the pattern mey
+     * @param slotName the name of the slot to retrieve
+     * @return the slot's value
+     * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
+     * @throws MissingSlotValueException if no value has been included in the input
+     * @throws UnrecognizedSlotValueException if the value provided does not match any known values
+     * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      */
-    static private String getPatternKey(HandlerInput input) {
+    static private String getSlotValue(HandlerInput input, String slotName)
+        throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
+            UnexpectedSlotResolutionStatusException {
 
-        // Grab the 'pattern' slot from the input.
+        // Get the slots collection from the input.
         Request request = input.getRequestEnvelope().getRequest();
         IntentRequest intentRequest = (IntentRequest) request;
         Intent intent = intentRequest.getIntent();
         Map<String, Slot> slots = intent.getSlots();
 
-        Slot patternSlot = slots.get(PATTERN_SLOT);
-        if (patternSlot == null)
-            return null;
+        // Get the desired slot.
+        Slot patternSlot = slots.get(slotName);
 
+        // The skill is not configured with a pattern slot.
+        if (patternSlot == null) {
+
+            // Throw an exception.
+            throw new SlotNotFoundException(slotName);
+        }
+
+        // Get the slot resolution collection.
         Resolutions slotResolutions = patternSlot.getResolutions();
-        if (slotResolutions == null)
-            return null;
 
+        // No resolutions are available.
+        // (The slot value was not provided by the user.)
+        if (slotResolutions == null) {
+
+            // Throw an exception.
+            throw new MissingSlotValueException(slotName);
+        }
+
+        // Get the resolution status code from the first (and only) resolution.
         List<Resolution> resolutions = slotResolutions.getResolutionsPerAuthority();
-        if ((resolutions == null) || (resolutions.size() == 0))
-            return null;
-
-        // There should only be one.
         Resolution resolution = resolutions.get(0);
-        if (resolution == null)
-            return null;
-
-        String authority = resolution.getAuthority();
-        if ((authority == null) || !authority.endsWith(SLOT_PATTERN_NAME))
-            return null;
-
         Status status = resolution.getStatus();
-        if (status == null)
-            return null;
-
-        // TODO: The status is 'ERR_NO_MATCH' if a pattern name was provided but it did not match any of the patterns.
-
         StatusCode statusCode = status.getCode();
-        if (statusCode != StatusCode.ER_SUCCESS_MATCH)
-            return null;
 
+        // The pattern name provided did not match any of the patterns defined in the skill.
+        if (statusCode == StatusCode.ER_SUCCESS_NO_MATCH) {
+
+            // Throw an exception.
+            throw new UnrecognizedSlotValueException(slotName, patternSlot.getName());
+        }
+
+        // There was an unexpected problem.
+        else if (statusCode != StatusCode.ER_SUCCESS_MATCH) {
+
+            // Throw an exception.
+            throw new UnexpectedSlotResolutionStatusException(slotName, statusCode.toString());
+        }
+
+        // Get the slot value from the first (and only) value.
         List<ValueWrapper> values = resolution.getValues();
-        if ((values == null) || (values.size() == 0))
-            return null;
-
-        // There should only be one.
         ValueWrapper valueWrapper = values.get(0);
-        if (valueWrapper == null)
-            return null;
-
         Value value = valueWrapper.getValue();
-        if (value == null)
-            return null;
 
-        // Get and return the pattern key
+        // Get and return the value's name.
         return value.getName();
     }
 }
