@@ -32,9 +32,23 @@ abstract class IntentHandler implements RequestHandler {
     private static final String PATTERN_SLOT = "TKDPattern";
 
     /**
-     * Gets the appropriate {@link Pattern} from the input.
+     * Gets the {@link Intent} from the given {@link HandlerInput}.
      *
-     * @param input the request input.
+     * @param input the handler input to use
+     * @return the intent
+     */
+    static protected Intent getIntent(HandlerInput input) {
+
+        // Get the intent from the input.
+        Request request = input.getRequestEnvelope().getRequest();
+        IntentRequest intentRequest = (IntentRequest) request;
+        return intentRequest.getIntent();
+    }
+
+    /**
+     * Gets the appropriate {@link Pattern} from the intent.
+     *
+     * @param intent the intent to use
      * @return the {@link Pattern}
      * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
      * @throws MissingSlotValueException if no value has been included in the input
@@ -42,14 +56,14 @@ abstract class IntentHandler implements RequestHandler {
      * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      * @throws PatternNotFoundException if the pattern cannot be resolved
      */
-    static protected Pattern getPattern(HandlerInput input)
+    static protected Pattern getPattern(Intent intent)
         throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
         // Get the pattern key from the input.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
-        String patternKey = getSlotValue(input, PATTERN_SLOT);
+        String patternKey = getSlotValue(intent, PATTERN_SLOT);
 
         // Get the TKD pattern from the name passed in.
         Pattern pattern = Patterns.getPatternByKey(patternKey);
@@ -68,9 +82,9 @@ abstract class IntentHandler implements RequestHandler {
     }
 
     /**
-     * Gets the value of the given slot.
+     * Gets the value of the given slot from the intent.
      *
-     * @param input the request input.
+     * @param intent the intent to use
      * @param slotName the name of the slot to retrieve
      * @return the slot's value
      * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
@@ -78,14 +92,11 @@ abstract class IntentHandler implements RequestHandler {
      * @throws UnrecognizedSlotValueException if the value provided does not match any known values
      * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      */
-    static private String getSlotValue(HandlerInput input, String slotName)
+    static private String getSlotValue(Intent intent, String slotName)
         throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException {
 
-        // Get the slots collection from the input.
-        Request request = input.getRequestEnvelope().getRequest();
-        IntentRequest intentRequest = (IntentRequest) request;
-        Intent intent = intentRequest.getIntent();
+        // Get the slots collection from the intent.
         Map<String, Slot> slots = intent.getSlots();
 
         // Get the desired slot.

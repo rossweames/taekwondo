@@ -15,12 +15,12 @@ package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.response.ResponseBuilder;
 import com.eames.taekwondo.handlers.exception.*;
 import com.eames.taekwondo.model.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
@@ -32,6 +32,9 @@ import static com.amazon.ask.request.Predicates.intentName;
  * TODO: Need unit tests for this class.
  */
 public class PatternStepCountIntentHandler extends IntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(PatternStepCountIntentHandler.class);
 
     /*
      * Implemented {@link RequestHandler} operations
@@ -45,15 +48,18 @@ public class PatternStepCountIntentHandler extends IntentHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
+        // Get the intent.
+        Intent intent = getIntent(input);
+
         // The response.
         IntentResponse intentResponse;
 
         try {
 
-            // Get the pattern from the input.
+            // Get the pattern from the intent.
             // Throws: SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             //         UnexpectedSlotResolutionStatusException, PatternNotFoundException
-            Pattern pattern = getPattern(input);
+            Pattern pattern = getPattern(intent);
 
             // Construct the answer.
             intentResponse = new IntentResponse(
@@ -74,7 +80,14 @@ public class PatternStepCountIntentHandler extends IntentHandler {
                     "Im sorry, but that request not cannot be fulfilled by this skill.",
                     false);
 
-            // TODO: Need to log this exception.
+            // TODO: Need to figure out why logging is not working.
+
+            logger.error(new StringBuilder()
+                            .append(ex.getClass().getName())
+                            .append(": slotName=")
+                            .append(ex.getSlotName())
+                            .append(".")
+                            .toString());
 
         } catch (MissingSlotValueException ex) {
             // No resolutions are available.
@@ -85,7 +98,12 @@ public class PatternStepCountIntentHandler extends IntentHandler {
                     "Which pattern did you want?",
                     true);
 
-            // TODO: Need to log this exception.
+            logger.error(new StringBuilder()
+                    .append(ex.getClass().getName())
+                    .append(": slotName=")
+                    .append(ex.getSlotName())
+                    .append(".")
+                    .toString());
 
         } catch (UnrecognizedSlotValueException ex) {
             // The pattern name provided did not match any of the patterns defined in the skill.
@@ -95,7 +113,14 @@ public class PatternStepCountIntentHandler extends IntentHandler {
                     "I'm sorry, I did not recognize that pattern, can you please repeat the pattern name?.",
                     true);
 
-            // TODO: Need to log this exception.
+            logger.error(new StringBuilder()
+                    .append(ex.getClass().getName())
+                    .append(": slotName=")
+                    .append(ex.getSlotName())
+                    .append(", slotValue=")
+                    .append(ex.getSlotValue())
+                    .append(".")
+                    .toString());
 
         } catch (UnexpectedSlotResolutionStatusException ex) {
             // There was an unexpected problem.
@@ -105,7 +130,14 @@ public class PatternStepCountIntentHandler extends IntentHandler {
                     "I'm sorry, I had a problem understanding your request, try asking again.",
                     false);
 
-            // TODO: Need to log this exception.
+            logger.error(new StringBuilder()
+                    .append(ex.getClass().getName())
+                    .append(": slotName=")
+                    .append(ex.getSlotName())
+                    .append(", slotValue=")
+                    .append(ex.getStatusCode())
+                    .append(".")
+                    .toString());
 
         } catch (PatternNotFoundException ex) {
             // The requested pattern was resolved by the skill, but the pattern is not one in our backend list.
@@ -114,8 +146,12 @@ public class PatternStepCountIntentHandler extends IntentHandler {
                     "I'm sorry, but I could not find that pattern; can you please repeat the pattern name?",
                     true);
 
-            // TODO: Need to log this exception.
-
+            logger.error(new StringBuilder()
+                    .append(ex.getClass().getName())
+                    .append(": patternName=")
+                    .append(ex.getPatternName())
+                    .append(".")
+                    .toString());
         }
 
         // Construct a response builder and add the speech text string to it.
@@ -125,17 +161,9 @@ public class PatternStepCountIntentHandler extends IntentHandler {
 
         // If the response needs a prompt, add it.
         if (intentResponse.isNeedsResponse())
-            responseBuilder.withReprompt(intentResponse.getSpeechText());
+            responseBuilder.addDelegateDirective(intent);
         else
             responseBuilder.withSpeech(intentResponse.getSpeechText());
-
-        // DEBUG - begin
-        // TODO: Need to remove this debug code.
-        Request request = input.getRequestEnvelope().getRequest();
-        IntentRequest intentRequest = (IntentRequest) request;
-        Intent intent = intentRequest.getIntent();
-        responseBuilder.withSimpleCard("TaeKwon-Do - PatternStepCount - debug", intent.toString());
-        // DEBUG - end
 
         // Build and return the response.
         return responseBuilder.build();
