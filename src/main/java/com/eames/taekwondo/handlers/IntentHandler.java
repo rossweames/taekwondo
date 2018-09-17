@@ -7,9 +7,10 @@ import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Request;
 import com.amazon.ask.model.Slot;
 import com.amazon.ask.model.slu.entityresolution.*;
-import com.eames.taekwondo.handlers.exception.*;
-import com.eames.taekwondo.model.Pattern;
-import com.eames.taekwondo.model.Patterns;
+import com.eames.taekwondo.handlers.exception.MissingSlotValueException;
+import com.eames.taekwondo.handlers.exception.SlotNotFoundException;
+import com.eames.taekwondo.handlers.exception.UnexpectedSlotResolutionStatusException;
+import com.eames.taekwondo.handlers.exception.UnrecognizedSlotValueException;
 
 import java.util.List;
 import java.util.Map;
@@ -19,72 +20,37 @@ import java.util.Map;
  *
  * TODO: Need unit tests for this class.
  */
-abstract class IntentHandler implements RequestHandler {
+public abstract class IntentHandler implements RequestHandler {
 
     /**
-     * The skill name
-     */
-    static protected final String SKILL_NAME = "Taekwon-Do Patterns";
-
-    /**
-     * The pattern slot key
-     */
-    private static final String PATTERN_SLOT = "TKDPattern";
-
-    /**
-     * Gets the {@link Intent} from the given {@link HandlerInput}.
+     * This is the default implementation that always returns {@code false}.
      *
-     * @param input the handler input to use
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the given request, {@code false} if not
+     */
+    @Override
+    public boolean canHandle(HandlerInput input) {
+        return false;
+    }
+
+    /**
+     * Gets the request input's {@link Intent}.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
      * @return the intent
      */
-    static protected Intent getIntent(HandlerInput input) {
+    protected Intent getIntent(HandlerInput input) {
 
-        // Get the intent from the input.
+        // Get the intent from the request input.
         Request request = input.getRequestEnvelope().getRequest();
         IntentRequest intentRequest = (IntentRequest) request;
         return intentRequest.getIntent();
     }
 
     /**
-     * Gets the appropriate {@link Pattern} from the intent.
-     *
-     * @param intent the intent to use
-     * @return the {@link Pattern}
-     * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
-     * @throws MissingSlotValueException if no value has been included in the input
-     * @throws UnrecognizedSlotValueException if the value provided does not match any known values
-     * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
-     * @throws PatternNotFoundException if the pattern cannot be resolved
-     */
-    static protected Pattern getPattern(Intent intent)
-        throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
-            UnexpectedSlotResolutionStatusException, PatternNotFoundException {
-
-        // Get the pattern key from the input.
-        // Throws: SlotNotFoundException, MissingSlotValueException,
-        //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
-        String patternKey = getSlotValue(intent, PATTERN_SLOT);
-
-        // Get the TKD pattern from the name passed in.
-        Pattern pattern = Patterns.getPatternByKey(patternKey);
-        if (pattern != null) {
-
-            // Return the pattern.
-            return pattern;
-        }
-
-        // No such pattern.
-        else {
-
-            // Throw an exception.
-            throw new PatternNotFoundException(patternKey);
-        }
-    }
-
-    /**
      * Gets the value of the given slot from the intent.
      *
-     * @param intent the intent to use
+     * @param input the {@link HandlerInput} request object to analyze
      * @param slotName the name of the slot to retrieve
      * @return the slot's value
      * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
@@ -92,12 +58,12 @@ abstract class IntentHandler implements RequestHandler {
      * @throws UnrecognizedSlotValueException if the value provided does not match any known values
      * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      */
-    static private String getSlotValue(Intent intent, String slotName)
-        throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
+    protected String getSlotValue(HandlerInput input, String slotName)
+            throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException {
 
         // Get the slots collection from the intent.
-        Map<String, Slot> slots = intent.getSlots();
+        Map<String, Slot> slots = getIntent(input).getSlots();
 
         // Get the desired slot.
         Slot patternSlot = slots.get(slotName);

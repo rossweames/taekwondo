@@ -35,7 +35,7 @@ public class LaunchRequestHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("TaeKwon-Do - Launch", speechText)
-                .withReprompt(speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

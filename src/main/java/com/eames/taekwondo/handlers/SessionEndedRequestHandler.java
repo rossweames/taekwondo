@@ -31,7 +31,14 @@ public class SessionEndedRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
         // any cleanup logic goes here
-        return input.getResponseBuilder().build();
+
+        String speechText = "Goodbye from TaeKwon-Do Patterns";
+        return input.getResponseBuilder()
+                .withSpeech(speechText)
+                .withSimpleCard("TaeKwon-Do - Session Ended", speechText)
+                .withShouldEndSession(true)
+                .build();
     }
 }

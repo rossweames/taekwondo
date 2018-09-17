@@ -11,29 +11,38 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package com.eames.taekwondo.handlers;
+package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import com.eames.taekwondo.model.Pattern;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class PatternPracticeLevelIntentHandler implements RequestHandler {
+public class PatternDiagramIntentHandler extends PatternIntentHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("PatternPracticeLevelIntent"));
+        return input.matches(intentName("PatternDiagramIntent"));
+    }
+    
+    @Override
+    public Optional<Response> handle(HandlerInput input) {
+        String speechText = "Pattern Diagram";
+        return input.getResponseBuilder()
+                .withSpeech(speechText)
+                .withSimpleCard("TaeKwon-Do - Pattern Diagram", speechText)
+                .withShouldEndSession(false)
+                .build();
     }
 
     @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Practice Level";
-       return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
-                .build();
+    protected String getAnswer(Pattern pattern) {
+
+        //TODO: Need to implement.
+
+        return "Not yet implemented.";
     }
 }

@@ -34,6 +34,7 @@ public class CancelIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("TaeKwon-Do - Cancel", speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

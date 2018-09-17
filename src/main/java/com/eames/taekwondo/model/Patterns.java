@@ -17,7 +17,7 @@ public abstract class Patterns {
     public static final Pattern DAN_GUN = new Pattern("dangun","Dan-Gun", "don-goon", Belts.EIGHTH_GUP, PatternDiagrams.CAPITAL_I, 21);
     public static final Pattern DO_SAN = new Pattern("dosan","Do-San", "doe-sahn", Belts.SEVENTH_GUP, PatternDiagrams.STAIR_STEP, 24);
     public static final Pattern WON_HYO = new Pattern("wonhyo","Won-Hyo", "wahn-yo", Belts.SIXTH_GUP, PatternDiagrams.CAPITAL_I, 28);
-    public static final Pattern YUL_GUK = new Pattern("yulguk","Yul-Guk", "yule-gook", Belts.FIFTH_GUP, PatternDiagrams.SCHOLAR_SIGN, 38);
+    public static final Pattern YUL_GOK = new Pattern("yulgok","Yul-Gok", "yule-gook", Belts.FIFTH_GUP, PatternDiagrams.SCHOLAR_SIGN, 38);
     public static final Pattern JOONG_GUN = new Pattern("joonggun","Joong-Gun", "joon-goon", Belts.FOURTH_GUP, PatternDiagrams.CAPITAL_I, 32);
     public static final Pattern TOI_GYE = new Pattern("toigye","Toi-Gye", "tay-gay", Belts.THIRD_GUP, PatternDiagrams.SCHOLAR_SIGN, 37);
     public static final Pattern HWA_RANG = new Pattern("hwarang","Hwa-Rang", "wah-rahng", Belts.SECOND_GUP, PatternDiagrams.CAPITAL_I, 29);
@@ -56,7 +56,7 @@ public abstract class Patterns {
         patterns.put(DAN_GUN.getKey(), DAN_GUN);
         patterns.put(DO_SAN.getKey(), DO_SAN);
         patterns.put(WON_HYO.getKey(), WON_HYO);
-        patterns.put(YUL_GUK.getKey(), YUL_GUK);
+        patterns.put(YUL_GOK.getKey(), YUL_GOK);
         patterns.put(JOONG_GUN.getKey(), JOONG_GUN);
         patterns.put(TOI_GYE.getKey(), TOI_GYE);
         patterns.put(HWA_RANG.getKey(), HWA_RANG);

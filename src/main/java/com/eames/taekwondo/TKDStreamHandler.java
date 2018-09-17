@@ -17,6 +17,8 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
 import com.amazon.ask.SkillStreamHandler;
 import com.eames.taekwondo.handlers.*;
+import com.eames.taekwondo.handlers.belt.BeltPatternIntentHandler;
+import com.eames.taekwondo.handlers.pattern.*;
 
 /**
  * This is the skill stream handler.

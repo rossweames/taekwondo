@@ -34,6 +34,7 @@ public class StopIntentHandler implements RequestHandler {
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("TaeKwon-Do - Stop", speechText)
+//                .withShouldEndSession(false)
                 .build();
     }
 }
