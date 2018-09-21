@@ -1,7 +1,7 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
+import com.amazon.ask.model.*;
 import com.amazon.ask.response.ResponseBuilder;
 import com.eames.taekwondo.handlers.IntentHandler;
 import com.eames.taekwondo.handlers.exception.*;
@@ -39,8 +39,18 @@ abstract class PatternIntentHandler extends IntentHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        // The response.
-        String speechText = null;
+        DialogState dialogState = getDialogState(input);
+
+        logger.debug(new StringBuilder()
+                .append("PatternIntentHandler (")
+                .append(input.getRequestEnvelope().getRequest().getClass().getSimpleName())
+                .append("): dialogState=")
+                .append(dialogState.toString())
+                .toString());
+
+        // Construct a response builder and keep the session open.
+        ResponseBuilder responseBuilder = input.getResponseBuilder()
+                .withShouldEndSession(false);
 
         try {
 
@@ -49,86 +59,97 @@ abstract class PatternIntentHandler extends IntentHandler {
             //         UnexpectedSlotResolutionStatusException, PatternNotFoundException
             Pattern pattern = getPattern(input);
 
-            // Get the answer from the concrete child class.
-            speechText = getAnswer(pattern);
+            logger.debug(new StringBuilder()
+                    .append("Found the pattern: ")
+                    .append(pattern.getDisplayName())
+                    .toString());
+            // Add the speech text answer to the response.
+            responseBuilder.withSpeech(getAnswer(pattern));
 
         } catch (SlotNotFoundException ex) {
             // The skill is not configured with a pattern slot.
 
-            // Construct the error message.
-            speechText = "Im sorry, but that request not cannot be fulfilled by this skill.";
-
-            // TODO: Need to figure out why logging is not working.
-
             logger.error(new StringBuilder()
-                    .append(ex.getClass().getName())
+                    .append(ex.getClass().getSimpleName())
                     .append(": slotName=")
                     .append(ex.getSlotName())
-                    .append(".")
                     .toString());
+
+            // Add the speech text error message to the response.
+            responseBuilder.withSpeech("Im sorry, but that request not cannot be fulfilled by this skill.");
 
         } catch (MissingSlotValueException ex) {
             // No resolutions are available.
             // (The slot value was not provided by the user.)
 
             logger.error(new StringBuilder()
-                    .append(ex.getClass().getName())
+                    .append(ex.getClass().getSimpleName())
                     .append(": slotName=")
                     .append(ex.getSlotName())
-                    .append(".")
                     .toString());
+
+            // Add a delegate directive to the response.
+            responseBuilder.addDelegateDirective(null);
 
         } catch (UnrecognizedSlotValueException ex) {
             // The pattern name provided did not match any of the patterns defined in the skill.
 
             logger.error(new StringBuilder()
-                    .append(ex.getClass().getName())
+                    .append(ex.getClass().getSimpleName())
                     .append(": slotName=")
                     .append(ex.getSlotName())
                     .append(", slotValue=")
                     .append(ex.getSlotValue())
-                    .append(".")
                     .toString());
+
+            /*
+             * We cannot simply return a null intent in the delegate directive.
+             * We must pass back an intent that contains an empty slot to get
+             * the skill to prompt for the pattern.
+             */
+
+            // Construct an empty slot.
+            Slot slot = Slot.builder()
+                    .withName(PATTERN_SLOT)
+                    .withConfirmationStatus(SlotConfirmationStatus.NONE)
+                    .build();
+
+            // Construct an intent that contains the empty slot.
+            Intent intent = Intent.builder()
+                    .withName(getIntent(input).getName())
+                    .withConfirmationStatus(IntentConfirmationStatus.NONE)
+                    .putSlotsItem(PATTERN_SLOT, slot)
+                    .build();
+
+            // Add a delegate directive containing the intent to the response.
+            responseBuilder.addDelegateDirective(intent);
 
         } catch (UnexpectedSlotResolutionStatusException ex) {
             // There was an unexpected problem.
 
-            // Construct the error message.
-            speechText = "I'm sorry, I had a problem understanding your request, try asking again.";
-
             logger.error(new StringBuilder()
-                    .append(ex.getClass().getName())
+                    .append(ex.getClass().getSimpleName())
                     .append(": slotName=")
                     .append(ex.getSlotName())
                     .append(", slotValue=")
                     .append(ex.getStatusCode())
-                    .append(".")
                     .toString());
+
+            // Add the speech text error message to the response.
+            responseBuilder.withSpeech("I'm sorry, I had a problem understanding your request, try asking again.");
 
         } catch (PatternNotFoundException ex) {
             // The requested pattern was resolved by the skill, but the pattern is not one in our backend list.
 
-            // Construct the error message.
-            speechText = "I'm sorry, but I could not find that pattern.";
-
             logger.error(new StringBuilder()
-                    .append(ex.getClass().getName())
+                    .append(ex.getClass().getSimpleName())
                     .append(": patternName=")
                     .append(ex.getPatternName())
-                    .append(".")
                     .toString());
+
+            // Add the speech text error message to the response.
+            responseBuilder.withSpeech("I'm sorry, but I could not find that pattern.");
         }
-
-        // Construct a response builder and add the speech text string to it.
-        // Keep the session open.
-        ResponseBuilder responseBuilder = input.getResponseBuilder()
-                .withShouldEndSession(false);
-
-        // Return the answer or a directive to the skill to prompt for the pattern.
-        if (speechText != null)
-            responseBuilder.withSpeech(speechText);
-        else
-            responseBuilder.addDelegateDirective(null);
 
         // Build and return the response.
         return responseBuilder.build();

@@ -2,10 +2,7 @@ package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Intent;
-import com.amazon.ask.model.IntentRequest;
-import com.amazon.ask.model.Request;
-import com.amazon.ask.model.Slot;
+import com.amazon.ask.model.*;
 import com.amazon.ask.model.slu.entityresolution.*;
 import com.eames.taekwondo.handlers.exception.MissingSlotValueException;
 import com.eames.taekwondo.handlers.exception.SlotNotFoundException;
@@ -42,9 +39,43 @@ public abstract class IntentHandler implements RequestHandler {
     protected Intent getIntent(HandlerInput input) {
 
         // Get the intent from the request input.
+        return getRequest(input).getIntent();
+    }
+
+    /**
+     * Gets the name of the request class.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the name of the class
+     */
+    protected String getRequestClassName(HandlerInput input) {
+
+        return input.getRequestEnvelope().getRequest().getClass().getSimpleName();
+    }
+
+    /**
+     * Gets the request input's {@link IntentRequest}.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the intent request
+     */
+    protected IntentRequest getRequest(HandlerInput input) {
+
+        // Get the dialog request from the request input.
         Request request = input.getRequestEnvelope().getRequest();
-        IntentRequest intentRequest = (IntentRequest) request;
-        return intentRequest.getIntent();
+        return (IntentRequest) request;
+    }
+
+    /**
+     * Gets the request input's {@link DialogState}.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the dialog state
+     */
+    protected DialogState getDialogState(HandlerInput input) {
+
+        // Get the dialog state from the request input.
+        return getRequest(input).getDialogState();
     }
 
     /**
@@ -96,7 +127,7 @@ public abstract class IntentHandler implements RequestHandler {
         if (statusCode == StatusCode.ER_SUCCESS_NO_MATCH) {
 
             // Throw an exception.
-            throw new UnrecognizedSlotValueException(slotName, patternSlot.getName());
+            throw new UnrecognizedSlotValueException(slotName, patternSlot.getValue());
         }
 
         // There was an unexpected problem.

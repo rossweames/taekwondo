@@ -14,14 +14,18 @@
 package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class StopIntentHandler implements RequestHandler {
+public class StopIntentHandler extends IntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(StopIntentHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -30,11 +34,19 @@ public class StopIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Goodbye from TaeKwon-Do Patterns";
+
+        logger.debug(new StringBuilder()
+                .append("StopIntentHandler (")
+                .append(getRequestClassName(input))
+                .append("): dialogState=")
+                .append(getDialogState(input).toString())
+                .toString());
+
+        String speechText = "OK, I stopped it.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("TaeKwon-Do - Stop", speechText)
-//                .withShouldEndSession(false)
+                .withShouldEndSession(false)
                 .build();
     }
 }

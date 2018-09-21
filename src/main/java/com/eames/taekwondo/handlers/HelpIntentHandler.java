@@ -14,14 +14,18 @@
 package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class HelpIntentHandler implements RequestHandler {
+public class HelpIntentHandler extends IntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(HelpIntentHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -30,6 +34,14 @@ public class HelpIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
+        logger.debug(new StringBuilder()
+                .append("HelpIntentHandler (")
+                .append(getRequestClassName(input))
+                .append("): dialogState=")
+                .append(getDialogState(input).toString())
+                .toString());
+
         String speechText = "You can ask for help!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)

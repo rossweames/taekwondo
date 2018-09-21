@@ -14,13 +14,15 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
 import com.eames.taekwondo.model.Pattern;
-
-import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'pattern diagram' skill.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class PatternDiagramIntentHandler extends PatternIntentHandler {
 
     @Override
@@ -29,20 +31,14 @@ public class PatternDiagramIntentHandler extends PatternIntentHandler {
     }
     
     @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Diagram";
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Pattern Diagram", speechText)
-                .withShouldEndSession(false)
-                .build();
-    }
-
-    @Override
     protected String getAnswer(Pattern pattern) {
 
-        //TODO: Need to implement.
-
-        return "Not yet implemented.";
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern has the ")
+                .append(pattern.getDiagram().getPhoneticName())
+                .append(" diagram.")
+                .toString();
     }
 }

@@ -1,14 +1,18 @@
 package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class FallbackIntentHandler implements RequestHandler {
+public class FallbackIntentHandler extends IntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(FallbackIntentHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -17,6 +21,14 @@ public class FallbackIntentHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
+        logger.debug(new StringBuilder()
+                .append("FallbackIntentHandler (")
+                .append(getRequestClassName(input))
+                .append("): dialogState=")
+                .append(getDialogState(input).toString())
+                .toString());
+
         String speechText = "Sorry, I don't know that. You can say try saying help!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)

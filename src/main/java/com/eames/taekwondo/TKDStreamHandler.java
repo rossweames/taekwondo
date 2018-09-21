@@ -30,7 +30,7 @@ import com.eames.taekwondo.handlers.pattern.*;
 public class TKDStreamHandler extends SkillStreamHandler {
 
     /**
-     * Tge skill id
+     * The skill id
      */
     static private final String SKILL_ID = "amzn1.ask.skill.1d1acb6b-7736-432d-a527-8844ae6ba422";
 

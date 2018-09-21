@@ -21,7 +21,6 @@ import static com.amazon.ask.request.Predicates.intentName;
 /**
  * This is the handler for the 'pattern step count' skill.
  *
- * TODO: Convert into a Generic class (Pattern).
  * TODO: Need unit tests for this class.
  */
 public class PatternStepCountIntentHandler extends PatternIntentHandler {
