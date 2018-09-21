@@ -42,6 +42,8 @@ public class CancelIntentHandler extends IntentHandler {
                 .append(getDialogState(input).toString())
                 .toString());
 
+        // TODO: Need to understand how cancel works.
+
         String speechText = "OK I cancelled it.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)

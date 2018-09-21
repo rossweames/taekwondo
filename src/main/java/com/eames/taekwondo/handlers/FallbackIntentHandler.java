@@ -29,6 +29,8 @@ public class FallbackIntentHandler extends IntentHandler {
                 .append(getDialogState(input).toString())
                 .toString());
 
+        // TODO: Need to understand how fallback works.
+
         String speechText = "Sorry, I don't know that. You can say try saying help!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)

@@ -42,6 +42,8 @@ public class StopIntentHandler extends IntentHandler {
                 .append(getDialogState(input).toString())
                 .toString());
 
+        // TODO: Need to understand how stop works.
+
         String speechText = "OK, I stopped it.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
