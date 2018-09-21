@@ -27,6 +27,13 @@ public class HelpIntentHandler extends IntentHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(HelpIntentHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public HelpIntentHandler() {
+        logger.debug("Constructing HelpIntentHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.HelpIntent"));

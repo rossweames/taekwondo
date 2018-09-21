@@ -16,12 +16,24 @@ package com.eames.taekwondo.handlers.pattern;
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.eames.taekwondo.model.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
 public class PatternHistoryIntentHandler extends PatternIntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(PatternHistoryIntentHandler.class);
+
+    /**
+     * Default Constructor
+     */
+    public PatternHistoryIntentHandler() {
+        logger.debug("Constructing PatternHistoryIntentHandler");
+    }
 
     @Override
     public boolean canHandle(HandlerInput input) {

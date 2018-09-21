@@ -14,6 +14,13 @@ public class FallbackIntentHandler extends IntentHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(FallbackIntentHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public FallbackIntentHandler() {
+        logger.debug("Constructing FallbackIntentHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.FallbackIntent"));

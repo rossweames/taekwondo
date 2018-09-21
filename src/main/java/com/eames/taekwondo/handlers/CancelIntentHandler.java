@@ -27,6 +27,13 @@ public class CancelIntentHandler extends IntentHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(CancelIntentHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public CancelIntentHandler() {
+        logger.debug("Constructing CancelIntentHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.CancelIntent"));
@@ -44,7 +51,7 @@ public class CancelIntentHandler extends IntentHandler {
 
         // TODO: Need to understand how cancel works.
 
-        String speechText = "OK I cancelled it.";
+        String speechText = "OK I canceled it.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withSimpleCard("TaeKwon-Do - Cancel", speechText)

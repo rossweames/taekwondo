@@ -15,6 +15,8 @@ package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.eames.taekwondo.model.Pattern;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -24,6 +26,16 @@ import static com.amazon.ask.request.Predicates.intentName;
  * TODO: Need unit tests for this class.
  */
 public class PatternDiagramIntentHandler extends PatternIntentHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(PatternDiagramIntentHandler.class);
+
+    /**
+     * Default Constructor
+     */
+    public PatternDiagramIntentHandler() {
+        logger.debug("Constructing PatternDiagramIntentHandler");
+    }
 
     @Override
     public boolean canHandle(HandlerInput input) {

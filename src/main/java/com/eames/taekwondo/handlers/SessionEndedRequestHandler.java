@@ -28,6 +28,13 @@ public class SessionEndedRequestHandler implements RequestHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(SessionEndedRequestHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public SessionEndedRequestHandler() {
+        logger.debug("Constructing SessionEndedRequestHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(requestType(SessionEndedRequest.class));
