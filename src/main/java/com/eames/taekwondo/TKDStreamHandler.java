@@ -19,6 +19,8 @@ import com.amazon.ask.SkillStreamHandler;
 import com.eames.taekwondo.handlers.*;
 import com.eames.taekwondo.handlers.belt.BeltPatternIntentHandler;
 import com.eames.taekwondo.handlers.pattern.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * This is the skill stream handler.
@@ -28,6 +30,9 @@ import com.eames.taekwondo.handlers.pattern.*;
  * TODO: Needs unit tests.
  */
 public class TKDStreamHandler extends SkillStreamHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(TKDStreamHandler.class);
 
     /**
      * The skill id
@@ -62,6 +67,10 @@ public class TKDStreamHandler extends SkillStreamHandler {
      * Constructor
      */
     public TKDStreamHandler() {
+
+        // Call the base class constructor.
         super(getSkill());
+
+        logger.debug("Constructing TKDStreamHandler");
     }
 }

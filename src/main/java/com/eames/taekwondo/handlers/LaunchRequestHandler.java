@@ -29,6 +29,13 @@ public class LaunchRequestHandler implements RequestHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public LaunchRequestHandler() {
+        logger.debug("Constructing LaunchRequestHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(requestType(LaunchRequest.class));

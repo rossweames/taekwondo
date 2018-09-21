@@ -27,6 +27,13 @@ public class StopIntentHandler extends IntentHandler {
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(StopIntentHandler.class);
 
+    /**
+     * Default Constructor
+     */
+    public StopIntentHandler() {
+        logger.debug("Constructing StopIntentHandler");
+    }
+
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.StopIntent"));
