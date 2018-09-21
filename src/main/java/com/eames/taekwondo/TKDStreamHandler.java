@@ -17,11 +17,31 @@ import com.amazon.ask.Skill;
 import com.amazon.ask.Skills;
 import com.amazon.ask.SkillStreamHandler;
 import com.eames.taekwondo.handlers.*;
+import com.eames.taekwondo.handlers.belt.BeltPatternIntentHandler;
+import com.eames.taekwondo.handlers.pattern.*;
 
+/**
+ * This is the skill stream handler.
+ * It registers all the skill intents.
+ *
+ * TODO: How many instances of these are there?
+ * TODO: Needs unit tests.
+ */
 public class TKDStreamHandler extends SkillStreamHandler {
 
+    /**
+     * The skill id
+     */
+    static private final String SKILL_ID = "amzn1.ask.skill.1d1acb6b-7736-432d-a527-8844ae6ba422";
+
+    /**
+     * Gets called by the Alexa Skill framework to register handlers for this skill.
+     *
+     * @return a {@link Skill} with this skill's id and its backend handlers
+     */
     private static Skill getSkill() {
         return Skills.standard()
+                .withSkillId(SKILL_ID)
                 .addRequestHandlers(
                         new CancelIntentHandler(),
                         new FallbackIntentHandler(),
@@ -35,12 +55,12 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new PatternStepCountIntentHandler(),
                         new SessionEndedRequestHandler(),
                         new StopIntentHandler())
-                // Add your skill id below
-                // TODO: Register skill id with stream handler.
-                //.withSkillId("")
                 .build();
     }
 
+    /**
+     * Constructor
+     */
     public TKDStreamHandler() {
         super(getSkill());
     }

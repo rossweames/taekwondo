@@ -17,12 +17,17 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 import com.amazon.ask.model.LaunchRequest;
 import com.amazon.ask.model.Response;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
 public class LaunchRequestHandler implements RequestHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(LaunchRequestHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -31,11 +36,18 @@ public class LaunchRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
+        logger.debug(new StringBuilder()
+                .append("LaunchRequestHandler (")
+                .append(input.getRequestEnvelope().getRequest().getClass().getSimpleName())
+                .append(")")
+                .toString());
+
         String speechText = "Welcome to the TaeKwon-Do Patterns skill.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
-                .withReprompt(speechText)
+                .withSimpleCard("TaeKwon-Do - Launch", speechText)
+                .withShouldEndSession(false)
                 .build();
     }
 }

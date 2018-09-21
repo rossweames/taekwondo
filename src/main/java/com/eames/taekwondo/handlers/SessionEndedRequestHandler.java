@@ -15,14 +15,18 @@ package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
-import com.amazon.ask.model.SessionEndedRequest;
+import com.amazon.ask.model.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
 public class SessionEndedRequestHandler implements RequestHandler {
+
+    // Initialize the Log4j logger.
+    private static final Logger logger = LogManager.getLogger(SessionEndedRequestHandler.class);
 
     @Override
     public boolean canHandle(HandlerInput input) {
@@ -31,7 +35,30 @@ public class SessionEndedRequestHandler implements RequestHandler {
 
     @Override
     public Optional<Response> handle(HandlerInput input) {
+
+        Request request = input.getRequestEnvelope().getRequest();
+        SessionEndedRequest sessionEndedRequest = (SessionEndedRequest) request;
+        SessionEndedReason reason = sessionEndedRequest.getReason();
+        SessionEndedError error = sessionEndedRequest.getError();
+
+        logger.debug(new StringBuilder()
+                .append("SessionEndedRequestHandler (")
+                .append(request.getClass().getSimpleName())
+                .append("): reason=")
+                .append(reason.toString())
+                .append(", errorType=")
+                .append((error != null) ? error.getType().toString() : "")
+                .append(", errorMessage=")
+                .append((error != null) ? error.getMessage() : "")
+                .toString());
+
         // any cleanup logic goes here
-        return input.getResponseBuilder().build();
+
+        String speechText = "Goodbye from TaeKwon-Do Patterns";
+        return input.getResponseBuilder()
+                .withSpeech(speechText)
+                .withSimpleCard("TaeKwon-Do - Session Ended", speechText)
+                .withShouldEndSession(true)
+                .build();
     }
 }

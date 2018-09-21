@@ -11,29 +11,39 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package com.eames.taekwondo.handlers;
+package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
-
-import java.util.Optional;
+import com.eames.taekwondo.model.Pattern;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class PatternStepCountIntentHandler implements RequestHandler {
+/**
+ * This is the handler for the 'pattern step count' skill.
+ *
+ * TODO: Need unit tests for this class.
+ */
+public class PatternStepCountIntentHandler extends PatternIntentHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternStepCountIntent"));
     }
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Step Count";
-       return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
-                .build();
+    /**
+     * Gets the answer speech text.
+     *
+     * @param pattern the {@link Pattern} to use
+     * @return the speech text answer
+     */
+    protected String getAnswer(Pattern pattern) {
+
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern has ")
+                .append(pattern.getMovementCount())
+                .append(" movements.")
+                .toString();
     }
-}
+ }

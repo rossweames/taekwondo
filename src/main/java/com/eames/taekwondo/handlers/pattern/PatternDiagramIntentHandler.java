@@ -11,29 +11,34 @@
      the specific language governing permissions and limitations under the License.
 */
 
-package com.eames.taekwondo.handlers;
+package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.dispatcher.request.handler.RequestHandler;
-import com.amazon.ask.model.Response;
-
-import java.util.Optional;
+import com.eames.taekwondo.model.Pattern;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class BeltPatternIntentHandler implements RequestHandler {
+/**
+ * This is the handler for the 'pattern diagram' skill.
+ *
+ * TODO: Need unit tests for this class.
+ */
+public class PatternDiagramIntentHandler extends PatternIntentHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("BeltPatternIntent"));
+        return input.matches(intentName("PatternDiagramIntent"));
     }
-
+    
     @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Belt Pattern";
-       return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do", speechText)
-                .build();
+    protected String getAnswer(Pattern pattern) {
+
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern has the ")
+                .append(pattern.getDiagram().getPhoneticName())
+                .append(" diagram.")
+                .toString();
     }
 }
