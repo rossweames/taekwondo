@@ -43,6 +43,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
+        // Get the reason and error.
         Request request = input.getRequestEnvelope().getRequest();
         SessionEndedRequest sessionEndedRequest = (SessionEndedRequest) request;
         SessionEndedReason reason = sessionEndedRequest.getReason();
@@ -60,6 +61,8 @@ public class SessionEndedRequestHandler implements RequestHandler {
                 .toString());
 
         // any cleanup logic goes here
+
+        // TODO: We should not be returning a response here.
 
         String speechText = "Goodbye from TaeKwon-Do Patterns";
         return input.getResponseBuilder()

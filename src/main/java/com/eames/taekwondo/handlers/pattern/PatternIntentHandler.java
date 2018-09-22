@@ -36,6 +36,13 @@ abstract class PatternIntentHandler extends IntentHandler {
      */
     protected abstract String getAnswer(Pattern pattern);
 
+    /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return a response containing either the answer speech text or a delegate directive
+     * telling the skill to ask for the pattern name
+     */
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
