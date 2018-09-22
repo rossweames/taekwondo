@@ -48,18 +48,18 @@ public class TKDStreamHandler extends SkillStreamHandler {
         return Skills.standard()
                 .withSkillId(SKILL_ID)
                 .addRequestHandlers(
-                        new CancelIntentHandler(),
-                        new FallbackIntentHandler(),
-                        new HelpIntentHandler(),
+//                        new CancelIntentHandler(),
+//                        new FallbackIntentHandler(),
+//                        new HelpIntentHandler(),
                         new LaunchRequestHandler(),
-                        new BeltPatternIntentHandler(),
+//                        new BeltPatternIntentHandler(),
                         new PatternDiagramIntentHandler(),
                         new PatternHistoryIntentHandler(),
                         new PatternInfoIntentHandler(),
                         new PatternPracticeLevelIntentHandler(),
                         new PatternStepCountIntentHandler(),
                         new SessionEndedRequestHandler(),
-                        new StopIntentHandler())
+//                        new StopIntentHandler())
                 .build();
     }
 
