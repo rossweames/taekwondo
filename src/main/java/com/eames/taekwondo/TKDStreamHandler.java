@@ -52,14 +52,15 @@ public class TKDStreamHandler extends SkillStreamHandler {
 //                        new FallbackIntentHandler(),
 //                        new HelpIntentHandler(),
                         new LaunchRequestHandler(),
+                        new SessionEndedRequestHandler(),
+//                        new StopIntentHandler(),
+
 //                        new BeltPatternIntentHandler(),
                         new PatternDiagramIntentHandler(),
                         new PatternHistoryIntentHandler(),
                         new PatternInfoIntentHandler(),
                         new PatternPracticeLevelIntentHandler(),
-                        new PatternStepCountIntentHandler(),
-                        new SessionEndedRequestHandler(),
-//                        new StopIntentHandler())
+                        new PatternStepCountIntentHandler())
                 .build();
     }
 
