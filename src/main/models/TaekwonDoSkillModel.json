@@ -1,0 +1,489 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "taekwondo patterns",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "PatternStepCountIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "samples": [
+                "{TKDPattern}"
+              ]
+            }
+          ],
+          "samples": [
+            "how many steps in {TKDPattern}"
+          ]
+        },
+        {
+          "name": "PatternDiagramIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "samples": [
+                "{TKDPattern}"
+              ]
+            }
+          ],
+          "samples": [
+            "what is the pattern diagram for {TKDPattern}"
+          ]
+        },
+        {
+          "name": "PatternHistoryIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "samples": [
+                "{TKDPattern}"
+              ]
+            }
+          ],
+          "samples": [
+            "what is the history of {TKDPattern}"
+          ]
+        },
+        {
+          "name": "PatternPracticeLevelIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "samples": [
+                "{TKDPattern}"
+              ]
+            }
+          ],
+          "samples": [
+            "what is the belt for {TKDPattern}"
+          ]
+        },
+        {
+          "name": "PatternInfoIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "samples": [
+                "{TKDPattern}"
+              ]
+            }
+          ],
+          "samples": [
+            "what is the info for {TKDPattern}"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        }
+      ],
+      "types": [
+        {
+          "name": "TKDPatternName",
+          "values": [
+            {
+              "name": {
+                "value": "tongil",
+                "synonyms": [
+                  "Tong Il",
+                  "TongIl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sejong",
+                "synonyms": [
+                  "Se Jong",
+                  "SeJong"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sosan",
+                "synonyms": [
+                  "So San",
+                  "SoDan"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "moonmoo",
+                "synonyms": [
+                  "Moon Moo",
+                  "MoonMoo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "ulji",
+                "synonyms": [
+                  "UlJi",
+                  "Ul Ji"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "yongae",
+                "synonyms": [
+                  "Ton Gae",
+                  "YonGae"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "choiyong",
+                "synonyms": [
+                  "Choi Yong",
+                  "ChoiYong"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "yoosin",
+                "synonyms": [
+                  "Yoo Sin",
+                  "YooSin"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "samil",
+                "synonyms": [
+                  "Sam Il",
+                  "SamIl"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "kodang",
+                "synonyms": [
+                  "Ko Dang",
+                  "KoDang"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "juche",
+                "synonyms": [
+                  "Juche"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "choongjang",
+                "synonyms": [
+                  "Choong Jang",
+                  "ChoongJang"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "euiam",
+                "synonyms": [
+                  "Eui Am",
+                  "EuiAm"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "gebaek",
+                "synonyms": [
+                  "Ge Baek",
+                  "GeBaek"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "poeeun",
+                "synonyms": [
+                  "Poe Eun",
+                  "PoeEun"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "kwanggae",
+                "synonyms": [
+                  "Kwang Gae",
+                  "KwangGae"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "choongmoo",
+                "synonyms": [
+                  "Choong Moo",
+                  "ChoongMoo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "hwarang",
+                "synonyms": [
+                  "Hwa Rang",
+                  "HwaRang"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sajutulgi",
+                "synonyms": [
+                  "Sa Ju Tul Gi",
+                  "SaJuTulGi"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "toigye",
+                "synonyms": [
+                  "Toi Gye",
+                  "ToiGye"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "joonggun",
+                "synonyms": [
+                  "Joong Gun",
+                  "JoongGun"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "yulgok",
+                "synonyms": [
+                  "Yul Gok",
+                  "YulGok"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "wonhyo",
+                "synonyms": [
+                  "Won Hyo",
+                  "WonHyo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "dosan",
+                "synonyms": [
+                  "Do San",
+                  "DoSan"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "dangun",
+                "synonyms": [
+                  "Dan Gun",
+                  "DanGun"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "chonji",
+                "synonyms": [
+                  "Chon Ji",
+                  "ChonJi"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sajumakgi",
+                "synonyms": [
+                  "Sa Ju Mak Gi",
+                  "SaJuMakGi"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "sajujirugi",
+                "synonyms": [
+                  "Sa Ju Jiru Gi",
+                  "SaJuJiruGi"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "PatternStepCountIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1370444137126.1431489924495"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PatternDiagramIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.468571465744.772541067492"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PatternHistoryIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.71697786346.696524739814"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PatternPracticeLevelIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.206752819737.877615458747"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PatternInfoIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1122569803126.404606607293"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.468571465744.772541067492",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1370444137126.1431489924495",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.71697786346.696524739814",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.206752819737.877615458747",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1122569803126.404606607293",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      }
+    ]
+  }
+}
