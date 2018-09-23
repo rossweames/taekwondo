@@ -50,11 +50,21 @@ public class PatternPracticeLevelIntentHandler extends PatternIntentHandler {
                 .build();
     }
 
+    /**
+     * Gets the answer speech text.
+     *
+     * @param pattern the {@link Pattern} to use
+     * @return the speech text answer
+     */
     @Override
     protected String getAnswer(Pattern pattern) {
 
-        //TODO: Need to implement.
-
-        return "Not yet implemented.";
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern is practiced at the ")
+                .append(pattern.getBeltLevel().getPhoneticName())
+                .append(" belt level.")
+                .toString();
     }
 }
