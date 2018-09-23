@@ -35,19 +35,15 @@ public class PatternPracticeLevelIntentHandler extends PatternIntentHandler {
         logger.debug("Constructing PatternPracticeLevelIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternPracticeLevelIntent"));
-    }
-
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Practice Level";
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Practice Level", speechText)
-                .withShouldEndSession(false)
-                .build();
     }
 
     /**
