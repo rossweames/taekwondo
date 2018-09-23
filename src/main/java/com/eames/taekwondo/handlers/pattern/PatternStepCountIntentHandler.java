@@ -37,6 +37,12 @@ public class PatternStepCountIntentHandler extends PatternIntentHandler {
         logger.debug("Constructing PatternStepCountIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternStepCountIntent"));

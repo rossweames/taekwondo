@@ -36,11 +36,24 @@ public class LaunchRequestHandler implements RequestHandler {
         logger.debug("Constructing LaunchRequestHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(requestType(LaunchRequest.class));
     }
 
+    /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     * Keeps the session open.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     * @return a response containing the welcome speech text
+     */
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
@@ -53,7 +66,6 @@ public class LaunchRequestHandler implements RequestHandler {
         String speechText = "Welcome to the TaeKwon-Do Patterns skill.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Launch", speechText)
                 .withShouldEndSession(false)
                 .build();
     }

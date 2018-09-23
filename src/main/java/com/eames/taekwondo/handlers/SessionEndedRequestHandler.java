@@ -35,11 +35,23 @@ public class SessionEndedRequestHandler implements RequestHandler {
         logger.debug("Constructing SessionEndedRequestHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(requestType(SessionEndedRequest.class));
     }
 
+    /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     * @return an empty response
+     */
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
@@ -62,13 +74,7 @@ public class SessionEndedRequestHandler implements RequestHandler {
 
         // any cleanup logic goes here
 
-        // TODO: We should not be returning a response here.
-
-        String speechText = "Goodbye from TaeKwon-Do Patterns";
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Session Ended", speechText)
-                .withShouldEndSession(true)
-                .build();
+        // Return an empty response.
+        return Optional.empty();
     }
 }

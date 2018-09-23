@@ -34,11 +34,25 @@ public class HelpIntentHandler extends IntentHandler {
         logger.debug("Constructing HelpIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.HelpIntent"));
     }
 
+    /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     * Creates an Alexa skill card containing the help information.
+     * Keeps the session open.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     * @return a response containing the help speech text
+     */
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
@@ -48,6 +62,8 @@ public class HelpIntentHandler extends IntentHandler {
                 .append("): dialogState=")
                 .append(getDialogState(input).toString())
                 .toString());
+
+        // TODO: Need to set the help information string.
 
         String speechText = "You can ask for help!";
         return input.getResponseBuilder()
