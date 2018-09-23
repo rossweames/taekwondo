@@ -37,11 +37,23 @@ public class PatternDiagramIntentHandler extends PatternIntentHandler {
         logger.debug("Constructing PatternDiagramIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternDiagramIntent"));
     }
-    
+
+    /**
+     * Gets the answer speech text.
+     *
+     * @param pattern the {@link Pattern} to use
+     * @return the speech text answer
+     */
     @Override
     protected String getAnswer(Pattern pattern) {
 
