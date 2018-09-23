@@ -49,12 +49,21 @@ public class PatternHistoryIntentHandler extends PatternIntentHandler {
                 .withShouldEndSession(false)
                 .build();
     }
-    @Override
 
+    /**
+     * Gets the answer speech text.
+     *
+     * @param pattern the {@link Pattern} to use
+     * @return the speech text answer
+     */
+    @Override
     protected String getAnswer(Pattern pattern) {
 
-        //TODO: Need to implement.
-
-        return "Not yet implemented.";
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern has the following history: ")
+                .append(pattern.getHistory())
+                .toString();
     }
 }
