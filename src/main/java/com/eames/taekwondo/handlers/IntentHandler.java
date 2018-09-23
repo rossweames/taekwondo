@@ -20,6 +20,7 @@ import java.util.Map;
 public abstract class IntentHandler implements RequestHandler {
 
     /**
+     * Determines whether this intent can handle the request.
      * This is the default implementation that always returns {@code false}.
      *
      * @param input the {@link HandlerInput} request object to analyze

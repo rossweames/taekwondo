@@ -34,11 +34,24 @@ public class StopIntentHandler extends IntentHandler {
         logger.debug("Constructing StopIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("AMAZON.StopIntent"));
     }
 
+    /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     * Keeps the session open.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     * @return a response containing either the answer speech text
+     */
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
@@ -48,6 +61,8 @@ public class StopIntentHandler extends IntentHandler {
                 .append("): dialogState=")
                 .append(getDialogState(input).toString())
                 .toString());
+
+        // TODO: This intent is not used yet.
 
         String speechText = "There is nothing to stop.";
         return input.getResponseBuilder()
