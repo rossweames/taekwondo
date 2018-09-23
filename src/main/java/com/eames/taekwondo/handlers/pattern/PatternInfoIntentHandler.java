@@ -14,12 +14,9 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -35,21 +32,23 @@ public class PatternInfoIntentHandler extends PatternIntentHandler {
         logger.debug("Constructing PatternInfoIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternInfoIntent"));
     }
 
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern Info";
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Pattern Info", speechText)
-                .withShouldEndSession(false)
-                .build();
-    }
-
+    /**
+     * Gets the answer speech text.
+     *
+     * @param pattern the {@link Pattern} to use
+     * @return the speech text answer
+     */
     @Override
     protected String getAnswer(Pattern pattern) {
 
