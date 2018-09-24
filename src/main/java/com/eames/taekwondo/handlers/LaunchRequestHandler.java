@@ -24,6 +24,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
+/**
+ * This is the handler for the launch skill notification.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class LaunchRequestHandler implements RequestHandler {
 
     // Initialize the Log4j logger.

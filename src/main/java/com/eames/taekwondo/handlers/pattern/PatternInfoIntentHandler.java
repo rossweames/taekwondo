@@ -20,6 +20,16 @@ import org.apache.logging.log4j.Logger;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'pattern info' skill.
+ * This intent returns the following:
+ * - Step count
+ * - Diagram
+ * - Practice level (belt)
+ * - History paragraph
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class PatternInfoIntentHandler extends PatternIntentHandler {
 
     // Initialize the Log4j logger.

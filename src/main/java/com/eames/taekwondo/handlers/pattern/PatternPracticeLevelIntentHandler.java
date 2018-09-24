@@ -20,6 +20,11 @@ import org.apache.logging.log4j.Logger;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'pattern practice level' skill.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class PatternPracticeLevelIntentHandler extends PatternIntentHandler {
 
     // Initialize the Log4j logger.

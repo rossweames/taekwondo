@@ -14,15 +14,17 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Optional;
-
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'pattern history' skill.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class PatternHistoryIntentHandler extends PatternIntentHandler {
 
     // Initialize the Log4j logger.
@@ -35,19 +37,15 @@ public class PatternHistoryIntentHandler extends PatternIntentHandler {
         logger.debug("Constructing PatternHistoryIntentHandler");
     }
 
+    /**
+     * Determine whether this intent can handle the request.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return {@code True} if this intent can handle the request, {@code false} if not
+     */
     @Override
     public boolean canHandle(HandlerInput input) {
         return input.matches(intentName("PatternHistoryIntent"));
-    }
-
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-        String speechText = "Pattern History";
-        return input.getResponseBuilder()
-                .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Pattern History", speechText)
-                .withShouldEndSession(false)
-                .build();
     }
 
     /**
