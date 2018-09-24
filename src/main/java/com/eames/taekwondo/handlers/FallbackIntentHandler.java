@@ -9,6 +9,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'fallback' notification.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class FallbackIntentHandler extends IntentHandler {
 
     // Initialize the Log4j logger.

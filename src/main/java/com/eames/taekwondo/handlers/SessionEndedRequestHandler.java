@@ -23,6 +23,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.requestType;
 
+/**
+ * This is the handler for the 'session ended' notification.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class SessionEndedRequestHandler implements RequestHandler {
 
     // Initialize the Log4j logger.

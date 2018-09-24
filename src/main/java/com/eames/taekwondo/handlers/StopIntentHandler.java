@@ -22,6 +22,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
+/**
+ * This is the handler for the 'stop' command.
+ *
+ * TODO: Need unit tests for this class.
+ */
 public class StopIntentHandler extends IntentHandler {
 
     // Initialize the Log4j logger.
