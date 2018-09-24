@@ -52,8 +52,17 @@ public class PatternInfoIntentHandler extends PatternIntentHandler {
     @Override
     protected String getAnswer(Pattern pattern) {
 
-        //TODO: Need to implement.
-
-        return "Not yet implemented.";
+        return new StringBuilder()
+                .append("The ")
+                .append(pattern.getPhoneticName())
+                .append(" pattern is practiced at the ")
+                .append(pattern.getBeltLevel().getPhoneticName())
+                .append(" belt level and has ")
+                .append(pattern.getMovementCount())
+                .append(" movements in a ")
+                .append(pattern.getDiagram().getPhoneticName())
+                .append(" diagram. The pattern has the following history: ")
+                .append(pattern.getHistory())
+                .toString();
     }
 }
