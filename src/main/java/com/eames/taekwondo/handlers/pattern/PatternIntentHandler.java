@@ -99,7 +99,7 @@ abstract class PatternIntentHandler extends IntentHandler {
             responseBuilder.addDelegateDirective(null);
 
         } catch (UnrecognizedSlotValueException ex) {
-            // The pattern name provided did not match any of the patterns defined in the skill.
+            // The pattern name provided did not match any of the json defined in the skill.
 
             logger.error(new StringBuilder()
                     .append(ex.getClass().getSimpleName())
