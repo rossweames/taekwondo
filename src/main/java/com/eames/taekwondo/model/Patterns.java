@@ -9,7 +9,7 @@ import java.util.Map;
 public abstract class Patterns {
 
     /**
-     * The patterns
+     * The json
      */
     public static final Pattern SA_JU_JIRU_JI = new Pattern("sajujirugi","Sa-Ju Jiru-Gi", "sah-jew gear-oo-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 7);
     public static final Pattern SA_JU_MAK_JI = new Pattern("sajumakgi","Sa-Ju Mak-Gi", "sah-jew mock-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 8);

@@ -124,7 +124,7 @@ public abstract class IntentHandler implements RequestHandler {
         Status status = resolution.getStatus();
         StatusCode statusCode = status.getCode();
 
-        // The pattern name provided did not match any of the patterns defined in the skill.
+        // The pattern name provided did not match any of the json defined in the skill.
         if (statusCode == StatusCode.ER_SUCCESS_NO_MATCH) {
 
             // Throw an exception.
