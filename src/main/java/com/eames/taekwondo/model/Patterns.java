@@ -11,8 +11,8 @@ public abstract class Patterns {
     /**
      * The json
      */
-    public static final Pattern SA_JU_JIRU_JI = new Pattern("sajujirugi","Sa-Ju Jiru-Gi", "sah-jew gear-oo-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 7);
-    public static final Pattern SA_JU_MAK_JI = new Pattern("sajumakgi","Sa-Ju Mak-Gi", "sah-jew mock-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 8);
+    public static final Pattern SA_JU_JIRU_GI = new Pattern("sajujirugi","Sa-Ju Jiru-Gi", "sah-jew gear-oo-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 7);
+    public static final Pattern SA_JU_MAK_GI = new Pattern("sajumakgi","Sa-Ju Mak-Gi", "sah-jew mock-gee", Belts.TENTH_GUP, PatternDiagrams.CROSS, 8);
     public static final Pattern CHON_JI = new Pattern("chonji", "Chon-Ji", "chun-gee", Belts.NINTH_GUP, PatternDiagrams.CROSS, 19);
     public static final Pattern DAN_GUN = new Pattern("dangun","Dan-Gun", "don-goon", Belts.EIGHTH_GUP, PatternDiagrams.CAPITAL_I, 21);
     public static final Pattern DO_SAN = new Pattern("dosan","Do-San", "doe-sahn", Belts.SEVENTH_GUP, PatternDiagrams.STAIR_STEP, 24);
@@ -22,7 +22,7 @@ public abstract class Patterns {
     public static final Pattern TOI_GYE = new Pattern("toigye","Toi-Gye", "tay-gay", Belts.THIRD_GUP, PatternDiagrams.SCHOLAR_SIGN, 37);
     public static final Pattern HWA_RANG = new Pattern("hwarang","Hwa-Rang", "wah-rahng", Belts.SECOND_GUP, PatternDiagrams.CAPITAL_I, 29);
     public static final Pattern SA_JU_TUL_GI = new Pattern("sajutulgi","Sa-Ju Tul-Gi", "sah-jew tool-gee", Belts.SECOND_GUP, PatternDiagrams.CROSS, 4);
-    public static final Pattern CHOONG_MO = new Pattern("choongmoo","Choong-Moo", "shoo-moo", Belts.FIRST_GUP, PatternDiagrams.CAPITAL_I, 30);
+    public static final Pattern CHOONG_MOO = new Pattern("choongmoo","Choong-Moo", "shoo-moo", Belts.FIRST_GUP, PatternDiagrams.CAPITAL_I, 30);
     public static final Pattern KWANG_GAE = new Pattern("kwanggae","Kwang-Gae", "kwon-gay", Belts.FIRST_DAN, PatternDiagrams.LAND_SIGN, 39);
     public static final Pattern POE_EUN = new Pattern("poeeun","Poe-Eun", "poe-en", Belts.FIRST_DAN, PatternDiagrams.HORIZONTAL_LINE, 36);
     public static final Pattern GAE_BAEK = new Pattern("gaebaek","Gae-Baek", "gaybeck", Belts.FIRST_DAN, PatternDiagrams.VERTICAL_LINE, 44);
@@ -50,8 +50,8 @@ public abstract class Patterns {
      */
     static {
         // Fill the pattern map.
-        patterns.put(SA_JU_JIRU_JI.getKey(), SA_JU_JIRU_JI);
-        patterns.put(SA_JU_MAK_JI.getKey(), SA_JU_MAK_JI);
+        patterns.put(SA_JU_JIRU_GI.getKey(), SA_JU_JIRU_GI);
+        patterns.put(SA_JU_MAK_GI.getKey(), SA_JU_MAK_GI);
         patterns.put(CHON_JI.getKey(), CHON_JI);
         patterns.put(DAN_GUN.getKey(), DAN_GUN);
         patterns.put(DO_SAN.getKey(), DO_SAN);
@@ -61,7 +61,7 @@ public abstract class Patterns {
         patterns.put(TOI_GYE.getKey(), TOI_GYE);
         patterns.put(HWA_RANG.getKey(), HWA_RANG);
         patterns.put(SA_JU_TUL_GI.getKey(), SA_JU_TUL_GI);
-        patterns.put(CHOONG_MO.getKey(), CHOONG_MO);
+        patterns.put(CHOONG_MOO.getKey(), CHOONG_MOO);
         patterns.put(KWANG_GAE.getKey(), KWANG_GAE);
         patterns.put(POE_EUN.getKey(), POE_EUN);
         patterns.put(GAE_BAEK.getKey(), GAE_BAEK);
