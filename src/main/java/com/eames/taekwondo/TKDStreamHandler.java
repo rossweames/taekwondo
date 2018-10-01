@@ -26,7 +26,6 @@ import org.apache.logging.log4j.Logger;
  * This is the skill stream handler.
  * It registers all the skill intents.
  *
- * TODO: How many instances of these are there?
  * TODO: Needs unit tests.
  */
 public class TKDStreamHandler extends SkillStreamHandler {
