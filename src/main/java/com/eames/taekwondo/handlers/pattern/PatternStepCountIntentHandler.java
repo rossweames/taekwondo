@@ -49,12 +49,12 @@ public class PatternStepCountIntentHandler extends PatternIntentHandler {
     }
 
     /**
-     * Gets the answer speech text.
+     * Processes the intent action and returns the answer speech text.
      *
      * @param pattern the {@link Pattern} to use
      * @return the speech text answer
      */
-    protected String getAnswer(Pattern pattern) {
+    protected String doProcessing(Pattern pattern) {
 
         return new StringBuilder()
                 .append("The ")

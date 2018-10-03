@@ -68,6 +68,18 @@ public abstract class IntentHandler implements RequestHandler {
     }
 
     /**
+     * Gets the request input's {@link Session}.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the {@link Session}
+     */
+    protected Session getSession(HandlerInput input) {
+
+        // Get the session from the input's request envelope.
+        return input.getRequestEnvelope().getSession();
+    }
+
+    /**
      * Gets the request input's {@link DialogState}.
      *
      * @param input the {@link HandlerInput} request object to analyze

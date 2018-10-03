@@ -10,6 +10,7 @@ import com.eames.taekwondo.model.Patterns;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -28,13 +29,18 @@ abstract class PatternIntentHandler extends IntentHandler {
     private static final String PATTERN_SLOT = "TKDPattern";
 
     /**
-     * Provides the answer for the pattern intent.
+     * The active pattern attribute key.
+     */
+    private static final String ATTRIBUTE_ACTIVE_PATTERN = "activePattern";
+
+    /**
+     * Processes the intent action and returns the answer speech text.
      * All concrete child intents must implement this operation to provide their answer.
      *
      * @param pattern the {@link Pattern} for which to provide the answer
      * @return the speech text answer for the pattern
      */
-    protected abstract String getAnswer(Pattern pattern);
+    protected abstract String doProcessing(Pattern pattern);
 
     /**
      * Gets called by the skill framework when there is something for this intent to do.
@@ -70,8 +76,12 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .append("Found the pattern: ")
                     .append(pattern.getDisplayName())
                     .toString());
+
+            // Set the active pattern to this one.
+            setActivePattern(input, pattern);
+
             // Add the speech text answer to the response.
-            responseBuilder.withSpeech(getAnswer(pattern));
+            responseBuilder.withSpeech(doProcessing(pattern));
 
         } catch (SlotNotFoundException ex) {
             // The skill is not configured with a pattern slot.
@@ -95,8 +105,20 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .append(ex.getSlotName())
                     .toString());
 
-            // Add a delegate directive to the response.
-            responseBuilder.addDelegateDirective(null);
+            // Check for an active pattern and use it if one is available.
+            ActivePattern activePattern = getActivePattern(input);
+            if (activePattern != null) {
+
+                // Add the active pattern's speech text answer to the response.
+                responseBuilder.withSpeech(doProcessing(activePattern.getPattern()));
+            }
+
+            // No active pattern is available, so return a delegate to prompt for one.
+            else {
+
+                // Add a delegate directive to the response.
+                responseBuilder.addDelegateDirective(null);
+            }
 
         } catch (UnrecognizedSlotValueException ex) {
             // The pattern name provided did not match any of the json defined in the skill.
@@ -195,6 +217,67 @@ abstract class PatternIntentHandler extends IntentHandler {
 
             // Throw an exception.
             throw new PatternNotFoundException(patternKey);
+        }
+    }
+
+    /**
+     * Gets the active pattern from the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the {@link ActivePattern} (an be {@code null})
+     */
+    private ActivePattern getActivePattern(HandlerInput input) {
+
+        // Get the session.
+        Session session = getSession(input);
+
+        // Get the attribute collection.
+        Map<String, Object> attributes = session.getAttributes();
+
+        // Get and return the active pattern.
+        return (ActivePattern) attributes.get(ATTRIBUTE_ACTIVE_PATTERN);
+    }
+
+    /**
+     * Sets the given active pattern into the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @param activePattern the {@link ActivePattern} to set
+     */
+    private void setActivePattern(HandlerInput input, ActivePattern activePattern) {
+
+        // Get the session.
+        Session session = getSession(input);
+
+        // Get the attribute collection.
+        Map<String, Object> attributes = session.getAttributes();
+
+        // Set the active pattern.
+        attributes.put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
+    }
+
+    /**
+     * Sets the active pattern to the given one.
+     * If the given pattern is the active one, do nothing.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @param pattern the {@link Pattern} to set
+     */
+    private void setActivePattern(HandlerInput input, Pattern pattern) {
+
+        // Get the active pattern.
+        ActivePattern activePattern = getActivePattern(input);
+
+        // It's a different pattern.
+        if ((activePattern == null) || !activePattern.getPattern().equals(pattern)) {
+
+            // Set the active pattern to this one.
+            setActivePattern(input, new ActivePattern(pattern));
+
+            logger.debug(new StringBuilder()
+                    .append("The pattern has been set to ")
+                    .append(pattern.getDisplayName())
+                    .toString());
         }
     }
 }
