@@ -10,7 +10,6 @@ import com.eames.taekwondo.model.Patterns;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -56,7 +55,7 @@ abstract class PatternIntentHandler extends IntentHandler {
 
         logger.debug(new StringBuilder()
                 .append("PatternIntentHandler (")
-                .append(input.getRequestEnvelope().getRequest().getClass().getSimpleName())
+                .append(getIntent(input).getName())
                 .append("): dialogState=")
                 .append(dialogState.toString())
                 .toString());
@@ -77,9 +76,6 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .append(pattern.getDisplayName())
                     .toString());
 
-            // Set the active pattern to this one.
-            setActivePattern(input, pattern);
-
             // Add the speech text answer to the response.
             responseBuilder.withSpeech(doProcessing(pattern));
 
@@ -97,7 +93,7 @@ abstract class PatternIntentHandler extends IntentHandler {
 
         } catch (MissingSlotValueException ex) {
             // No resolutions are available.
-            // (The slot value was not provided by the user.)
+            // (The slot value was not provided by the user and there is no active pattern.)
 
             logger.error(new StringBuilder()
                     .append(ex.getClass().getSimpleName())
@@ -105,20 +101,8 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .append(ex.getSlotName())
                     .toString());
 
-            // Check for an active pattern and use it if one is available.
-            ActivePattern activePattern = getActivePattern(input);
-            if (activePattern != null) {
-
-                // Add the active pattern's speech text answer to the response.
-                responseBuilder.withSpeech(doProcessing(activePattern.getPattern()));
-            }
-
-            // No active pattern is available, so return a delegate to prompt for one.
-            else {
-
-                // Add a delegate directive to the response.
-                responseBuilder.addDelegateDirective(null);
-            }
+            // Add a delegate directive to the response.
+            responseBuilder.addDelegateDirective(null);
 
         } catch (UnrecognizedSlotValueException ex) {
             // The pattern name provided did not match any of the json defined in the skill.
@@ -199,14 +183,20 @@ abstract class PatternIntentHandler extends IntentHandler {
         throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
+        // First, grab the active pattern.
+        String activePattern = getActivePattern(input);
+
         // Get the pattern key from tge request.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
-        String patternKey = getSlotValue(input, PATTERN_SLOT);
+        String patternKey = getSlotValue(input, PATTERN_SLOT, activePattern);
 
         // Get the TKD pattern from the name passed in.
         Pattern pattern = Patterns.getPatternByKey(patternKey);
         if (pattern != null) {
+
+            // Set the active pattern to this one.
+            setActivePattern(input, pattern.getKey());
 
             // Return the pattern.
             return pattern;
@@ -224,60 +214,23 @@ abstract class PatternIntentHandler extends IntentHandler {
      * Gets the active pattern from the session.
      *
      * @param input the {@link HandlerInput} request object to analyze
-     * @return the {@link ActivePattern} (an be {@code null})
+     * @return the {@link ActivePattern} name (an be {@code null})
      */
-    private ActivePattern getActivePattern(HandlerInput input) {
+    private String getActivePattern(HandlerInput input) {
 
-        // Get the session.
-        Session session = getSession(input);
-
-        // Get the attribute collection.
-        Map<String, Object> attributes = session.getAttributes();
-
-        // Get and return the active pattern.
-        return (ActivePattern) attributes.get(ATTRIBUTE_ACTIVE_PATTERN);
+        // Get and return the session attribute collection.
+        return (String) input.getAttributesManager().getSessionAttributes().get(ATTRIBUTE_ACTIVE_PATTERN);
     }
 
     /**
      * Sets the given active pattern into the session.
      *
      * @param input the {@link HandlerInput} request object to analyze
-     * @param activePattern the {@link ActivePattern} to set
+     * @param activePattern the {@link ActivePattern} name to set
      */
-    private void setActivePattern(HandlerInput input, ActivePattern activePattern) {
-
-        // Get the session.
-        Session session = getSession(input);
-
-        // Get the attribute collection.
-        Map<String, Object> attributes = session.getAttributes();
+    private void setActivePattern(HandlerInput input, String activePattern) {
 
         // Set the active pattern.
-        attributes.put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
-    }
-
-    /**
-     * Sets the active pattern to the given one.
-     * If the given pattern is the active one, do nothing.
-     *
-     * @param input the {@link HandlerInput} request object to analyze
-     * @param pattern the {@link Pattern} to set
-     */
-    private void setActivePattern(HandlerInput input, Pattern pattern) {
-
-        // Get the active pattern.
-        ActivePattern activePattern = getActivePattern(input);
-
-        // It's a different pattern.
-        if ((activePattern == null) || !activePattern.getPattern().equals(pattern)) {
-
-            // Set the active pattern to this one.
-            setActivePattern(input, new ActivePattern(pattern));
-
-            logger.debug(new StringBuilder()
-                    .append("The pattern has been set to ")
-                    .append(pattern.getDisplayName())
-                    .toString());
-        }
+        input.getAttributesManager().getSessionAttributes().put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
     }
 }

@@ -128,6 +128,8 @@ public class Pattern extends SkillEntity {
      * Loads the history paragraph from the pattern's JSON file the first time it is requested.
      * The JSON file is named using the pattern's key.
      *
+     * TODO: This operation is being called the first time the pattern is found.
+     *
      * @return the pattern history
      */
     public String getHistory() {
@@ -144,8 +146,12 @@ public class Pattern extends SkillEntity {
             return history;
         }
 
-        // Read and return the pattern history.
-        return loadJSONElement(JSON_HISTORY_KEY);
+        // The history paragraph has not yet been read, so read it.
+        else
+            history = loadJSONElement(JSON_HISTORY_KEY);
+
+        // Return the history paragraph.
+        return history;
     }
 
     /**

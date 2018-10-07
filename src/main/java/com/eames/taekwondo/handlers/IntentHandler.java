@@ -96,13 +96,14 @@ public abstract class IntentHandler implements RequestHandler {
      *
      * @param input the {@link HandlerInput} request object to analyze
      * @param slotName the name of the slot to retrieve
+     * @param defaultValue the value to return if the input contains no slot value
      * @return the slot's value
      * @throws SlotNotFoundException if the input json has the wrong format due to a skill configuration error
      * @throws MissingSlotValueException if no value has been included in the input
      * @throws UnrecognizedSlotValueException if the value provided does not match any known values
      * @throws UnexpectedSlotResolutionStatusException if the resolution contains an unexpected status
      */
-    protected String getSlotValue(HandlerInput input, String slotName)
+    protected String getSlotValue(HandlerInput input, String slotName, String defaultValue)
             throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException {
 
@@ -126,8 +127,13 @@ public abstract class IntentHandler implements RequestHandler {
         // (The slot value was not provided by the user.)
         if (slotResolutions == null) {
 
+            // A default value was provided, so use it.
+            if (defaultValue != null)
+                return defaultValue;
+
             // Throw an exception.
-            throw new MissingSlotValueException(slotName);
+            else
+               throw new MissingSlotValueException(slotName);
         }
 
         // Get the resolution status code from the first (and only) resolution.
