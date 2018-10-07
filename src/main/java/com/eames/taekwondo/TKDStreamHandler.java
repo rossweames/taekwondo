@@ -14,10 +14,9 @@
 package com.eames.taekwondo;
 
 import com.amazon.ask.Skill;
-import com.amazon.ask.Skills;
 import com.amazon.ask.SkillStreamHandler;
+import com.amazon.ask.Skills;
 import com.eames.taekwondo.handlers.*;
-import com.eames.taekwondo.handlers.belt.BeltPatternIntentHandler;
 import com.eames.taekwondo.handlers.pattern.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -59,7 +58,9 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new PatternHistoryIntentHandler(),
                         new PatternInfoIntentHandler(),
                         new PatternPracticeLevelIntentHandler(),
-                        new PatternStepCountIntentHandler())
+                        new PatternStartingPositionIntentHandler(),
+                        new PatternStepCountIntentHandler(),
+                        new SelectPatternIntentHandler())
                 .build();
     }
 

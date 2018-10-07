@@ -1,12 +1,13 @@
 package com.eames.taekwondo.model;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * This abstract class is the base class for all skill entities.
  * It provides a partial implementation for concrete skill entities.
  */
-abstract class SkillEntity {
+abstract class SkillEntity implements Serializable {
 
     /**
      * The skill key/identifier
@@ -73,12 +74,19 @@ abstract class SkillEntity {
         return phoneticName;
     }
 
-    /*
-     * Overridden {@link Object} operations
-     */
-
     @Override
     public int hashCode() {
         return Objects.hash(key);
+    }
+
+    @Override
+    public String toString() {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(displayName);
+        sb.append(" (");
+        sb.append(key);
+        sb.append(")");
+        return sb.toString();
     }
 }

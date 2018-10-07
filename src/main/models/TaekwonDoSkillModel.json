@@ -27,6 +27,7 @@
             }
           ],
           "samples": [
+            "steps",
             "how many steps in {TKDPattern}"
           ]
         },
@@ -42,6 +43,7 @@
             }
           ],
           "samples": [
+            "diagram",
             "what is the pattern diagram for {TKDPattern}"
           ]
         },
@@ -57,6 +59,7 @@
             }
           ],
           "samples": [
+            "history",
             "what is the history of {TKDPattern}"
           ]
         },
@@ -72,6 +75,7 @@
             }
           ],
           "samples": [
+            "belt",
             "what is the belt for {TKDPattern}"
           ]
         },
@@ -87,11 +91,42 @@
             }
           ],
           "samples": [
+            "info",
             "what is the info for {TKDPattern}"
           ]
         },
         {
           "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "SelectPatternIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName"
+            }
+          ],
+          "samples": [
+            "select",
+            "select {TKDPattern}"
+          ]
+        },
+        {
+          "name": "PatternStartingPositionIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName"
+            }
+          ],
+          "samples": [
+            "what is the starting position for {TKDPattern}",
+            "starting position"
+          ]
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
           "samples": []
         }
       ],
@@ -101,7 +136,7 @@
           "values": [
             {
               "name": {
-                "value": "tongil",
+                "value": "tong_il",
                 "synonyms": [
                   "Tong Il",
                   "TongIl"
@@ -110,7 +145,7 @@
             },
             {
               "name": {
-                "value": "sejong",
+                "value": "se_jong",
                 "synonyms": [
                   "Se Jong",
                   "SeJong"
@@ -119,7 +154,7 @@
             },
             {
               "name": {
-                "value": "sosan",
+                "value": "so_san",
                 "synonyms": [
                   "So San",
                   "SoDan"
@@ -128,7 +163,7 @@
             },
             {
               "name": {
-                "value": "moonmoo",
+                "value": "moon_moo",
                 "synonyms": [
                   "Moon Moo",
                   "MoonMoo"
@@ -137,7 +172,7 @@
             },
             {
               "name": {
-                "value": "ulji",
+                "value": "ul_ji",
                 "synonyms": [
                   "UlJi",
                   "Ul Ji"
@@ -146,7 +181,7 @@
             },
             {
               "name": {
-                "value": "yongae",
+                "value": "yon_gae",
                 "synonyms": [
                   "Ton Gae",
                   "YonGae"
@@ -155,7 +190,7 @@
             },
             {
               "name": {
-                "value": "choiyong",
+                "value": "choi_yong",
                 "synonyms": [
                   "Choi Yong",
                   "ChoiYong"
@@ -164,7 +199,7 @@
             },
             {
               "name": {
-                "value": "yoosin",
+                "value": "yoo_sin",
                 "synonyms": [
                   "Yoo Sin",
                   "YooSin"
@@ -173,7 +208,7 @@
             },
             {
               "name": {
-                "value": "samil",
+                "value": "sam_il",
                 "synonyms": [
                   "Sam Il",
                   "SamIl"
@@ -182,7 +217,7 @@
             },
             {
               "name": {
-                "value": "kodang",
+                "value": "ko_dang",
                 "synonyms": [
                   "Ko Dang",
                   "KoDang"
@@ -199,7 +234,7 @@
             },
             {
               "name": {
-                "value": "choongjang",
+                "value": "choong_jang",
                 "synonyms": [
                   "Choong Jang",
                   "ChoongJang"
@@ -208,7 +243,7 @@
             },
             {
               "name": {
-                "value": "euiam",
+                "value": "eui_am",
                 "synonyms": [
                   "Eui Am",
                   "EuiAm"
@@ -217,7 +252,7 @@
             },
             {
               "name": {
-                "value": "gebaek",
+                "value": "ge_baek",
                 "synonyms": [
                   "Ge Baek",
                   "GeBaek"
@@ -226,7 +261,7 @@
             },
             {
               "name": {
-                "value": "poeeun",
+                "value": "poe_eun",
                 "synonyms": [
                   "Poe Eun",
                   "PoeEun"
@@ -235,7 +270,7 @@
             },
             {
               "name": {
-                "value": "kwanggae",
+                "value": "kwang_gae",
                 "synonyms": [
                   "Kwang Gae",
                   "KwangGae"
@@ -244,7 +279,7 @@
             },
             {
               "name": {
-                "value": "choongmoo",
+                "value": "choong_moo",
                 "synonyms": [
                   "Choong Moo",
                   "ChoongMoo"
@@ -253,7 +288,7 @@
             },
             {
               "name": {
-                "value": "hwarang",
+                "value": "hwa_rang",
                 "synonyms": [
                   "Hwa Rang",
                   "HwaRang"
@@ -262,7 +297,7 @@
             },
             {
               "name": {
-                "value": "sajutulgi",
+                "value": "sa_ju_tul_gi",
                 "synonyms": [
                   "Sa Ju Tul Gi",
                   "SaJuTulGi"
@@ -271,7 +306,7 @@
             },
             {
               "name": {
-                "value": "toigye",
+                "value": "toi_gye",
                 "synonyms": [
                   "Toi Gye",
                   "ToiGye"
@@ -280,7 +315,7 @@
             },
             {
               "name": {
-                "value": "joonggun",
+                "value": "joong_gun",
                 "synonyms": [
                   "Joong Gun",
                   "JoongGun"
@@ -289,7 +324,7 @@
             },
             {
               "name": {
-                "value": "yulgok",
+                "value": "yul_gok",
                 "synonyms": [
                   "Yul Gok",
                   "YulGok"
@@ -298,7 +333,7 @@
             },
             {
               "name": {
-                "value": "wonhyo",
+                "value": "won_hyo",
                 "synonyms": [
                   "Won Hyo",
                   "WonHyo"
@@ -307,7 +342,7 @@
             },
             {
               "name": {
-                "value": "dosan",
+                "value": "do_san",
                 "synonyms": [
                   "Do San",
                   "DoSan"
@@ -316,7 +351,7 @@
             },
             {
               "name": {
-                "value": "dangun",
+                "value": "dan_gun",
                 "synonyms": [
                   "Dan Gun",
                   "DanGun"
@@ -325,7 +360,7 @@
             },
             {
               "name": {
-                "value": "chonji",
+                "value": "chon_ji",
                 "synonyms": [
                   "Chon Ji",
                   "ChonJi"
@@ -334,7 +369,7 @@
             },
             {
               "name": {
-                "value": "sajumakgi",
+                "value": "sa_ju_mak_gi",
                 "synonyms": [
                   "Sa Ju Mak Gi",
                   "SaJuMakGi"
@@ -343,7 +378,7 @@
             },
             {
               "name": {
-                "value": "sajujirugi",
+                "value": "sa_ju_jiru_gi",
                 "synonyms": [
                   "Sa Ju Jiru Gi",
                   "SaJuJiruGi"
@@ -435,6 +470,38 @@
               }
             }
           ]
+        },
+        {
+          "name": "SelectPatternIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1178836402150.28246696282"
+              }
+            }
+          ]
+        },
+        {
+          "name": "PatternStartingPositionIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1002711900121.1299582130651"
+              }
+            }
+          ]
         }
       ]
     },
@@ -477,6 +544,24 @@
       },
       {
         "id": "Elicit.Slot.1122569803126.404606607293",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1178836402150.28246696282",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1002711900121.1299582130651",
         "variations": [
           {
             "type": "PlainText",

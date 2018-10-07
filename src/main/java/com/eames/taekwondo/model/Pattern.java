@@ -24,7 +24,7 @@ public class Pattern extends SkillEntity {
     private static final String JSON_EXTENSION = ".json";
 
     /**
-     * The JSON file 'history' key.
+     * The JSON file keys.
      */
     private static final String JSON_HISTORY_KEY = "history";
 
@@ -45,6 +45,11 @@ public class Pattern extends SkillEntity {
      * The number of movements in the pattern
      */
     private final int movementCount;
+
+    /**
+     * The pattern starting position
+     */
+    private Stance startingPosition;
 
     /**
      * The pattern history paragraph
@@ -69,7 +74,7 @@ public class Pattern extends SkillEntity {
      * @param movementCount the number of movements in the pattern
      */
     protected Pattern(String key, String displayName, String phoneticName, Belt beltLevel,
-                      PatternDiagram patternDiagram, int movementCount) {
+                      PatternDiagram patternDiagram, int movementCount, Stance startingPosition) {
 
         // Call the base class constructor.
         super(key, displayName, phoneticName);
@@ -77,6 +82,7 @@ public class Pattern extends SkillEntity {
         // Set the attributes.
         this.beltLevel = beltLevel;
         this.patternDiagram = patternDiagram;
+        this.startingPosition = startingPosition;
         this.movementCount = movementCount;
     }
 
@@ -107,11 +113,22 @@ public class Pattern extends SkillEntity {
     {
         return movementCount;
     }
-    
+
+    /**
+     * Gets the starting position.
+     *
+     * @return the pattern starting position
+     */
+    public Stance getStartingPosition() {
+        return startingPosition;
+    }
+
     /**
      * Gets the pattern history.
      * Loads the history paragraph from the pattern's JSON file the first time it is requested.
-     * Tge JSON fike is named using the pattern's key.
+     * The JSON file is named using the pattern's key.
+     *
+     * TODO: This operation is being called the first time the pattern is found.
      *
      * @return the pattern history
      */
@@ -129,13 +146,30 @@ public class Pattern extends SkillEntity {
             return history;
         }
 
-        // Initialize the history paragraph.
-        history = "";
+        // The history paragraph has not yet been read, so read it.
+        else
+            history = loadJSONElement(JSON_HISTORY_KEY);
+
+        // Return the history paragraph.
+        return history;
+    }
+
+    /**
+     * Loads the given element from the pattern's JSON file.
+     * The JSON file is named using the pattern's key.
+     *
+     * @param key the key of the JSON element to load
+     * @return the element's value
+     */
+    private String loadJSONElement(String key) {
+
+        // Initialize the value.
+        String value = "";
 
         // Create a JSON parser.
         JSONParser jsonParser = new JSONParser();
 
-        // Load the history paragraph from the pattern's JSON file.
+        // Load the specified element from the pattern's JSON file.
         try {
 
             // Get an input stream for the pattern's json file.
@@ -152,28 +186,32 @@ public class Pattern extends SkillEntity {
                 // Throws: IOException, ParseException
                 JSONObject jsonObject =  (JSONObject) jsonParser.parse(jsonString);
 
-                // Get the 'history' element.
-                String readHistory = (String) jsonObject.get(JSON_HISTORY_KEY);
-                if (readHistory != null) {
+                // Get the specified element.
+                String readValue = (String) jsonObject.get(key);
+                if (readValue != null) {
 
-                    // Save the history.
-                    history = readHistory;
+                    // Save the value.
+                    value = readValue;
 
                     logger.debug(new StringBuilder()
-                            .append("Successfully read the history for ")
+                            .append("Successfully read the '")
+                            .append(key)
+                            .append("' element for ")
                             .append(getDisplayName())
                             .append(": ")
-                            .append(history)
+                            .append(value)
                             .toString());
                 }
 
-                // There is no history.
+                // There is no element.
                 else {
 
                     logger.error(new StringBuilder()
-                            .append("Failed to read the history for ")
+                            .append("Failed to read the '")
+                            .append(key)
+                            .append("' element for ")
                             .append(getDisplayName())
-                            .append(": The file did not contain a history element.")
+                            .append(": The file did not contain the specified element.")
                             .toString());
                 }
             }
@@ -181,7 +219,9 @@ public class Pattern extends SkillEntity {
             else {
 
                 logger.error(new StringBuilder()
-                        .append("Failed to read the history for ")
+                        .append("Failed to read the '")
+                        .append(key)
+                        .append("' element for ")
                         .append(getDisplayName())
                         .append(": The file could not be found.")
                         .toString());
@@ -190,15 +230,17 @@ public class Pattern extends SkillEntity {
         } catch (ParseException | IOException ex) {
 
             logger.error(new StringBuilder()
-                    .append("Failed to read the history for ")
+                    .append("Failed to read the '")
+                    .append(key)
+                    .append("' element for ")
                     .append(getDisplayName())
                     .append(": ")
                     .append(ex.getMessage())
                     .toString());
         }
 
-        // Return the newly loaded history paragraph.
-        return history;
+        // Return the newly loaded element.
+        return value;
     }
 
     /**

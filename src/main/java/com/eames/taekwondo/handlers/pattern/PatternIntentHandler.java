@@ -28,13 +28,18 @@ abstract class PatternIntentHandler extends IntentHandler {
     private static final String PATTERN_SLOT = "TKDPattern";
 
     /**
-     * Provides the answer for the pattern intent.
+     * The active pattern attribute key.
+     */
+    private static final String ATTRIBUTE_ACTIVE_PATTERN = "activePattern";
+
+    /**
+     * Processes the intent action and returns the answer speech text.
      * All concrete child intents must implement this operation to provide their answer.
      *
      * @param pattern the {@link Pattern} for which to provide the answer
      * @return the speech text answer for the pattern
      */
-    protected abstract String getAnswer(Pattern pattern);
+    protected abstract String doProcessing(Pattern pattern);
 
     /**
      * Gets called by the skill framework when there is something for this intent to do.
@@ -50,7 +55,7 @@ abstract class PatternIntentHandler extends IntentHandler {
 
         logger.debug(new StringBuilder()
                 .append("PatternIntentHandler (")
-                .append(input.getRequestEnvelope().getRequest().getClass().getSimpleName())
+                .append(getIntent(input).getName())
                 .append("): dialogState=")
                 .append(dialogState.toString())
                 .toString());
@@ -70,8 +75,9 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .append("Found the pattern: ")
                     .append(pattern.getDisplayName())
                     .toString());
+
             // Add the speech text answer to the response.
-            responseBuilder.withSpeech(getAnswer(pattern));
+            responseBuilder.withSpeech(doProcessing(pattern));
 
         } catch (SlotNotFoundException ex) {
             // The skill is not configured with a pattern slot.
@@ -87,7 +93,7 @@ abstract class PatternIntentHandler extends IntentHandler {
 
         } catch (MissingSlotValueException ex) {
             // No resolutions are available.
-            // (The slot value was not provided by the user.)
+            // (The slot value was not provided by the user and there is no active pattern.)
 
             logger.error(new StringBuilder()
                     .append(ex.getClass().getSimpleName())
@@ -177,14 +183,20 @@ abstract class PatternIntentHandler extends IntentHandler {
         throws SlotNotFoundException, MissingSlotValueException, UnrecognizedSlotValueException,
             UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
+        // First, grab the active pattern.
+        String activePattern = getActivePattern(input);
+
         // Get the pattern key from tge request.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
-        String patternKey = getSlotValue(input, PATTERN_SLOT);
+        String patternKey = getSlotValue(input, PATTERN_SLOT, activePattern);
 
         // Get the TKD pattern from the name passed in.
         Pattern pattern = Patterns.getPatternByKey(patternKey);
         if (pattern != null) {
+
+            // Set the active pattern to this one.
+            setActivePattern(input, pattern.getKey());
 
             // Return the pattern.
             return pattern;
@@ -196,5 +208,29 @@ abstract class PatternIntentHandler extends IntentHandler {
             // Throw an exception.
             throw new PatternNotFoundException(patternKey);
         }
+    }
+
+    /**
+     * Gets the active pattern from the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the {@link ActivePattern} name (an be {@code null})
+     */
+    private String getActivePattern(HandlerInput input) {
+
+        // Get and return the session attribute collection.
+        return (String) input.getAttributesManager().getSessionAttributes().get(ATTRIBUTE_ACTIVE_PATTERN);
+    }
+
+    /**
+     * Sets the given active pattern into the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @param activePattern the {@link ActivePattern} name to set
+     */
+    private void setActivePattern(HandlerInput input, String activePattern) {
+
+        // Set the active pattern.
+        input.getAttributesManager().getSessionAttributes().put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
     }
 }
