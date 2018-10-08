@@ -233,4 +233,15 @@ abstract class PatternIntentHandler extends IntentHandler {
         // Set the active pattern.
         input.getAttributesManager().getSessionAttributes().put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
     }
+
+    /**
+     * Clears the active pattern in the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     */
+    private void clearActivePattern(HandlerInput input) {
+
+        // Clear the active pattern.
+        input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_ACTIVE_PATTERN);
+    }
 }
