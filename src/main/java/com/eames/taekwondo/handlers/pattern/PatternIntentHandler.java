@@ -51,14 +51,19 @@ abstract class PatternIntentHandler extends IntentHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        DialogState dialogState = getDialogState(input);
-
         logger.debug(new StringBuilder()
-                .append("PatternIntentHandler (")
-                .append(getIntent(input).getName())
-                .append("): dialogState=")
-                .append(dialogState.toString())
+                .append("intent=")
+                .append(getIntent(input).toString())
                 .toString());
+
+//        DialogState dialogState = getDialogState(input);
+//
+//        logger.debug(new StringBuilder()
+//                .append("PatternIntentHandler (")
+//                .append(getIntent(input).getName())
+//                .append("): dialogState=")
+//                .append(dialogState.toString())
+//                .toString());
 
         // Construct a response builder and keep the session open.
         ResponseBuilder responseBuilder = input.getResponseBuilder()
