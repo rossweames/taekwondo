@@ -23,8 +23,8 @@ public abstract class Patterns {
     public static final Pattern HWA_RANG = new Pattern("hwa_rang","Hwa-Rang", "wah-rahng", Belts.SECOND_GUP, PatternDiagrams.CAPITAL_I, 29, Stances.CLOSED_READY_C);
     public static final Pattern SA_JU_TUL_GI = new Pattern("sa_ju_tul_gi","Sa-Ju Tul-Gi", "sah-jew tool-gee", Belts.SECOND_GUP, PatternDiagrams.CROSS, 4, Stances.PARALLEL_READY);
     public static final Pattern CHOONG_MOO = new Pattern("choong_moo","Choong-Moo", "shoo-moo", Belts.FIRST_GUP, PatternDiagrams.CAPITAL_I, 30, Stances.PARALLEL_READY);
-    public static final Pattern KWANG_GAE = new Pattern("kwang_gae","Kwang-Gae", "kwon-gay", Belts.FIRST_DAN, PatternDiagrams.LAND_SIGN, 39, Stances.HEAVEN_HANDS);
-    public static final Pattern POE_EUN = new Pattern("poe_eun","Poe-Eun", "poe-en", Belts.FIRST_DAN, PatternDiagrams.HORIZONTAL_LINE, 36, Stances.HEAVEN_HANDS);
+    public static final Pattern KWANG_GAE = new Pattern("kwang_gae","Kwang-Gae", "kwon-gay", Belts.FIRST_DAN, PatternDiagrams.LAND_SIGN, 39, Stances.PARALLEL_HEAVEN);
+    public static final Pattern POE_EUN = new Pattern("poe_eun","Poe-Eun", "poe-en", Belts.FIRST_DAN, PatternDiagrams.HORIZONTAL_LINE, 36, Stances.PARALLEL_HEAVEN);
     public static final Pattern GAE_BAEK = new Pattern("gae_baek","Gae-Baek", "gaybeck", Belts.FIRST_DAN, PatternDiagrams.VERTICAL_LINE, 44, Stances.PARALLEL_READY);
     public static final Pattern EUI_AM = new Pattern("eui_am","Eui-Am", "ee-ahm", Belts.SECOND_DAN, PatternDiagrams.VERTICAL_LINE, 45, Stances.CLOSED_READY_D);
     public static final Pattern CHOONG_JANG = new Pattern("choong_jang","Choong-Jang", "choong-jang", Belts.SECOND_DAN, PatternDiagrams.INVERSE_T, 52, Stances.CLOSED_READY_A);

@@ -15,11 +15,11 @@ public class Stances {
     public static final Stance PARALLEL_TWIN = new Stance("parallel_twin", "Parallel with a Twin Side Elbow", "parallel with a twin side elbow");
     public static final Stance PARALLEL_X = new Stance("parallel_x", "Parallel with an X-Back Hand", "parallel with an x back hand");
     public static final Stance PARALLEL_OVER = new Stance("parallel_over", "Parallel with an Overlapped Back Hand", "parallel with an overlapped back hand");
+    public static final Stance PARALLEL_HEAVEN = new Stance("parallel_heaven", "Parallel Heaven Hands", "parallel heaven hands");
     public static final Stance CLOSED_READY_A = new Stance("closed_ready_a", "Closed Ready Type A", "closed ready type a");
     public static final Stance CLOSED_READY_B = new Stance("closed_ready_b", "Closed Ready Type B", "closed ready type b");
     public static final Stance CLOSED_READY_C = new Stance("closed_ready_c", "Closed Ready Type C", "closed ready type c");
     public static final Stance CLOSED_READY_D = new Stance("closed_ready_d", "Closed Ready Type D", "closed ready type d");
-    public static final Stance HEAVEN_HANDS = new Stance("heaven_hands", "Heaven Hands", "heaven hands");
     public static final Stance WARRIOR_READY_A = new Stance("warrior_ready_a", "Warrior Ready Type A", "warrior ready type a");
 
     /*

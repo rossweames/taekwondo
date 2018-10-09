@@ -186,7 +186,12 @@ abstract class PatternIntentHandler extends IntentHandler {
         // First, grab the active pattern.
         String activePattern = getActivePattern(input);
 
-        // Get the pattern key from tge request.
+        logger.debug(new StringBuilder()
+                .append("activePattern=")
+                .append((activePattern != null) ? activePattern : "null")
+                .toString());
+
+        // Get the pattern key from the request.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
         String patternKey = getSlotValue(input, PATTERN_SLOT, activePattern);
