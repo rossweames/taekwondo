@@ -51,14 +51,19 @@ abstract class PatternIntentHandler extends IntentHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        DialogState dialogState = getDialogState(input);
-
         logger.debug(new StringBuilder()
-                .append("PatternIntentHandler (")
-                .append(getIntent(input).getName())
-                .append("): dialogState=")
-                .append(dialogState.toString())
+                .append("intent=")
+                .append(getIntent(input).toString())
                 .toString());
+
+//        DialogState dialogState = getDialogState(input);
+//
+//        logger.debug(new StringBuilder()
+//                .append("PatternIntentHandler (")
+//                .append(getIntent(input).getName())
+//                .append("): dialogState=")
+//                .append(dialogState.toString())
+//                .toString());
 
         // Construct a response builder and keep the session open.
         ResponseBuilder responseBuilder = input.getResponseBuilder()
@@ -186,7 +191,12 @@ abstract class PatternIntentHandler extends IntentHandler {
         // First, grab the active pattern.
         String activePattern = getActivePattern(input);
 
-        // Get the pattern key from tge request.
+        logger.debug(new StringBuilder()
+                .append("activePattern=")
+                .append((activePattern != null) ? activePattern : "null")
+                .toString());
+
+        // Get the pattern key from the request.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
         String patternKey = getSlotValue(input, PATTERN_SLOT, activePattern);
