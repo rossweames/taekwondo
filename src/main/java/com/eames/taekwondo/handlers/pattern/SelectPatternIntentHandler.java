@@ -1,9 +1,12 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.amazon.ask.model.Response;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -35,6 +38,24 @@ public class SelectPatternIntentHandler extends PatternIntentHandler {
     }
 
     /**
+     * Gets called by the skill framework when there is something for this intent to do.
+     * Clears the active pattern then calls the base class handler.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     * @return a response containing either the answer speech text or a delegate directive
+     * telling the skill to ask for the pattern name
+     */
+    @Override
+    public Optional<Response> handle(HandlerInput input) {
+
+        // Clear the active pattern.
+        clearActivePattern(input);
+
+        // Call the base class handler.
+        return super.handle(input);
+    }
+
+    /**
      * Processes the intent action and returns the answer speech text.
      *
      * @param pattern the {@link Pattern} to use
@@ -43,9 +64,9 @@ public class SelectPatternIntentHandler extends PatternIntentHandler {
     protected String doProcessing(Pattern pattern) {
 
         return new StringBuilder()
-                .append("The ")
+                .append("O.K., I've selected the ")
                 .append(pattern.getPhoneticName())
-                .append(" pattern is now selected.")
+                .append(" pattern.")
                 .toString();
     }
 }
