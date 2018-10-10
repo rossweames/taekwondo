@@ -51,20 +51,6 @@ abstract class PatternIntentHandler extends IntentHandler {
     @Override
     public Optional<Response> handle(HandlerInput input) {
 
-        logger.debug(new StringBuilder()
-                .append("intent=")
-                .append(getIntent(input).toString())
-                .toString());
-
-//        DialogState dialogState = getDialogState(input);
-//
-//        logger.debug(new StringBuilder()
-//                .append("PatternIntentHandler (")
-//                .append(getIntent(input).getName())
-//                .append("): dialogState=")
-//                .append(dialogState.toString())
-//                .toString());
-
         // Construct a response builder and keep the session open.
         ResponseBuilder responseBuilder = input.getResponseBuilder()
                 .withShouldEndSession(false);
@@ -249,7 +235,7 @@ abstract class PatternIntentHandler extends IntentHandler {
      *
      * @param input the {@link HandlerInput} request object to analyze
      */
-    private void clearActivePattern(HandlerInput input) {
+    protected void clearActivePattern(HandlerInput input) {
 
         // Clear the active pattern.
         input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_ACTIVE_PATTERN);
