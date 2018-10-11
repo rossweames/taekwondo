@@ -15,6 +15,7 @@ package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
+import com.eames.taekwondo.handlers.pattern.utilities.IntentUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -62,9 +63,9 @@ public class CancelIntentHandler extends IntentHandler {
 
         logger.debug(new StringBuilder()
                 .append("CancelIntentHandler (")
-                .append(getRequestClassName(input))
+                .append(IntentUtilities.getRequestClassName(input))
                 .append("): dialogState=")
-                .append(getDialogState(input).toString())
+                .append(IntentUtilities.getDialogState(input).toString())
                 .toString());
 
         // TODO: This intent is not used yet.

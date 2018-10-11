@@ -108,6 +108,8 @@
             }
           ],
           "samples": [
+            "select a pattern",
+            "{TKDPattern}",
             "select",
             "select {TKDPattern}"
           ]
@@ -128,6 +130,19 @@
         {
           "name": "AMAZON.NavigateHomeIntent",
           "samples": []
+        },
+        {
+          "name": "CurrentPatternIntent",
+          "slots": [],
+          "samples": [
+            "what is the currently selected pattern",
+            "which pattern is currently selected",
+            "which pattern is selected",
+            "what is the selected pattern",
+            "selected pattern",
+            "current pattern",
+            "what is the current pattern"
+          ]
         }
       ],
       "types": [
@@ -136,7 +151,7 @@
           "values": [
             {
               "name": {
-                "value": "tong_il",
+                "value": "tongil",
                 "synonyms": [
                   "Tong Il",
                   "TongIl"
@@ -145,7 +160,7 @@
             },
             {
               "name": {
-                "value": "se_jong",
+                "value": "sejong",
                 "synonyms": [
                   "Se Jong",
                   "SeJong"
@@ -154,7 +169,7 @@
             },
             {
               "name": {
-                "value": "so_san",
+                "value": "sosan",
                 "synonyms": [
                   "So San",
                   "SoDan"
@@ -163,7 +178,7 @@
             },
             {
               "name": {
-                "value": "moon_moo",
+                "value": "moonmoo",
                 "synonyms": [
                   "Moon Moo",
                   "MoonMoo"
@@ -172,7 +187,7 @@
             },
             {
               "name": {
-                "value": "ul_ji",
+                "value": "ulji",
                 "synonyms": [
                   "UlJi",
                   "Ul Ji"
@@ -181,7 +196,7 @@
             },
             {
               "name": {
-                "value": "yon_gae",
+                "value": "yongae",
                 "synonyms": [
                   "Ton Gae",
                   "YonGae"
@@ -190,7 +205,7 @@
             },
             {
               "name": {
-                "value": "choi_yong",
+                "value": "choiyong",
                 "synonyms": [
                   "Choi Yong",
                   "ChoiYong"
@@ -199,7 +214,7 @@
             },
             {
               "name": {
-                "value": "yoo_sin",
+                "value": "yoosin",
                 "synonyms": [
                   "Yoo Sin",
                   "YooSin"
@@ -208,7 +223,7 @@
             },
             {
               "name": {
-                "value": "sam_il",
+                "value": "samil",
                 "synonyms": [
                   "Sam Il",
                   "SamIl"
@@ -217,7 +232,7 @@
             },
             {
               "name": {
-                "value": "ko_dang",
+                "value": "kodang",
                 "synonyms": [
                   "Ko Dang",
                   "KoDang"
@@ -234,7 +249,7 @@
             },
             {
               "name": {
-                "value": "choong_jang",
+                "value": "choongjang",
                 "synonyms": [
                   "Choong Jang",
                   "ChoongJang"
@@ -243,7 +258,7 @@
             },
             {
               "name": {
-                "value": "eui_am",
+                "value": "euiam",
                 "synonyms": [
                   "Eui Am",
                   "EuiAm"
@@ -252,16 +267,16 @@
             },
             {
               "name": {
-                "value": "ge_baek",
+                "value": "gaebaek",
                 "synonyms": [
-                  "Ge Baek",
-                  "GeBaek"
+                  "Gae Baek",
+                  "GaeBaek"
                 ]
               }
             },
             {
               "name": {
-                "value": "poe_eun",
+                "value": "poeeun",
                 "synonyms": [
                   "Poe Eun",
                   "PoeEun"
@@ -270,7 +285,7 @@
             },
             {
               "name": {
-                "value": "kwang_gae",
+                "value": "kwanggae",
                 "synonyms": [
                   "Kwang Gae",
                   "KwangGae"
@@ -279,7 +294,7 @@
             },
             {
               "name": {
-                "value": "choong_moo",
+                "value": "choongmoo",
                 "synonyms": [
                   "Choong Moo",
                   "ChoongMoo"
@@ -288,7 +303,7 @@
             },
             {
               "name": {
-                "value": "hwa_rang",
+                "value": "hwarang",
                 "synonyms": [
                   "Hwa Rang",
                   "HwaRang"
@@ -297,7 +312,7 @@
             },
             {
               "name": {
-                "value": "sa_ju_tul_gi",
+                "value": "sajutulgi",
                 "synonyms": [
                   "Sa Ju Tul Gi",
                   "SaJuTulGi"
@@ -306,7 +321,7 @@
             },
             {
               "name": {
-                "value": "toi_gye",
+                "value": "toigye",
                 "synonyms": [
                   "Toi Gye",
                   "ToiGye"
@@ -315,7 +330,7 @@
             },
             {
               "name": {
-                "value": "joong_gun",
+                "value": "joonggun",
                 "synonyms": [
                   "Joong Gun",
                   "JoongGun"
@@ -324,7 +339,7 @@
             },
             {
               "name": {
-                "value": "yul_gok",
+                "value": "yulgok",
                 "synonyms": [
                   "Yul Gok",
                   "YulGok"
@@ -333,7 +348,7 @@
             },
             {
               "name": {
-                "value": "won_hyo",
+                "value": "wonhyo",
                 "synonyms": [
                   "Won Hyo",
                   "WonHyo"
@@ -342,7 +357,7 @@
             },
             {
               "name": {
-                "value": "do_san",
+                "value": "dosan",
                 "synonyms": [
                   "Do San",
                   "DoSan"
@@ -351,7 +366,7 @@
             },
             {
               "name": {
-                "value": "dan_gun",
+                "value": "dangun",
                 "synonyms": [
                   "Dan Gun",
                   "DanGun"
@@ -360,7 +375,7 @@
             },
             {
               "name": {
-                "value": "chon_ji",
+                "value": "chonji",
                 "synonyms": [
                   "Chon Ji",
                   "ChonJi"
@@ -369,7 +384,7 @@
             },
             {
               "name": {
-                "value": "sa_ju_mak_gi",
+                "value": "sajumakgi",
                 "synonyms": [
                   "Sa Ju Mak Gi",
                   "SaJuMakGi"
@@ -378,7 +393,7 @@
             },
             {
               "name": {
-                "value": "sa_ju_jiru_gi",
+                "value": "sajujirugi",
                 "synonyms": [
                   "Sa Ju Jiru Gi",
                   "SaJuJiruGi"

@@ -54,6 +54,7 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new StopIntentHandler(),
 
 //                        new BeltPatternIntentHandler(),
+                        new CurrentPatternIntentHandler(),
                         new PatternDiagramIntentHandler(),
                         new PatternHistoryIntentHandler(),
                         new PatternInfoIntentHandler(),

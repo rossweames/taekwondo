@@ -2,6 +2,7 @@ package com.eames.taekwondo.handlers;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
+import com.eames.taekwondo.handlers.pattern.utilities.IntentUtilities;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -50,9 +51,9 @@ public class FallbackIntentHandler extends IntentHandler {
 
         logger.debug(new StringBuilder()
                 .append("FallbackIntentHandler (")
-                .append(getRequestClassName(input))
+                .append(IntentUtilities.getRequestClassName(input))
                 .append("): dialogState=")
-                .append(getDialogState(input).toString())
+                .append(IntentUtilities.getDialogState(input).toString())
                 .toString());
 
         // TODO: Need to set the help information string.
@@ -62,7 +63,6 @@ public class FallbackIntentHandler extends IntentHandler {
         String speechText = "Sorry, I don't know that. You can say try saying help!";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
-                .withSimpleCard("TaeKwon-Do - Fallback", speechText)
                 .withShouldEndSession(false)
                 .build();
     }

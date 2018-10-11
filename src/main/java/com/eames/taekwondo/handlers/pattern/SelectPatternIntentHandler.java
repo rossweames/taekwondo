@@ -2,6 +2,7 @@ package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
+import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +50,7 @@ public class SelectPatternIntentHandler extends PatternIntentHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         // Clear the active pattern.
-        clearActivePattern(input);
+        ActivePatternUtilities.clearActivePattern(input);
 
         // Call the base class handler.
         return super.handle(input);
