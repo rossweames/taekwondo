@@ -1,6 +1,8 @@
 package com.eames.taekwondo.handlers.pattern.utilities;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.eames.taekwondo.model.Pattern;
+import com.eames.taekwondo.model.Patterns;
 
 /**
  * Provides a set of utilities for managing the active pattern.
@@ -38,12 +40,23 @@ public abstract class ActivePatternUtilities {
 
     /**
      * Clears the active pattern in the session.
+     * Unloads the pattern's movements.
      *
      * @param input the {@link HandlerInput} request object to analyze
      */
     public static void clearActivePattern(HandlerInput input) {
 
-        // Clear the active pattern.
-        input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_ACTIVE_PATTERN);
+        // Get the active pattern.
+        String activePatternKey = getActivePattern(input);
+        if (activePatternKey != null) {
+
+            // Unload the active pattern's movements.
+            Pattern activePattern = Patterns.getPatternByKey(activePatternKey);
+            if (activePattern != null)
+                activePattern.clearMovements();
+
+            // Clear the active pattern.
+            input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_ACTIVE_PATTERN);
+        }
     }
 }

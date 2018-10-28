@@ -11,6 +11,9 @@ public class Stances {
     /**
      * The stances
      */
+    public static final Stance ATTENTION = new Stance("attention", "Attention", "attention");
+    public static final Stance WALKING = new Stance("walking", "Walking", "walking");
+    public static final Stance L = new Stance("l", "L", "l");
     public static final Stance PARALLEL_READY = new Stance("parallelready", "Parallel Ready", "parallel ready");
     public static final Stance PARALLEL_TWIN = new Stance("paralleltwin", "Parallel with a Twin Side Elbow", "parallel with a twin side elbow");
     public static final Stance PARALLEL_X = new Stance("parallelx", "Parallel with an X-Back Hand", "parallel with an x back hand");
