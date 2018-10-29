@@ -10,37 +10,47 @@ import com.eames.taekwondo.model.Patterns;
 public abstract class ActivePatternUtilities {
 
     /**
-     * The active pattern attribute key.
+     * The active pattern attribute keys.
      */
     private static final String ATTRIBUTE_ACTIVE_PATTERN = "activePattern";
+    private static final String ATTRIBUTE_CURRENT_STEP = "currentStep";
+
+    /*
+     * The active pattern
+     */
 
     /**
      * Gets the active pattern from the session.
      *
      * @param input the {@link HandlerInput} request object to analyze
-     * @return the {@link ActivePatternUtilities} name (an be {@code null})
+     * @return the active pattern key (an be {@code null})
      */
     public static String getActivePattern(HandlerInput input) {
 
-        // Get and return the session attribute collection.
+        // Get and return the active pattern.
         return (String) input.getAttributesManager().getSessionAttributes().get(ATTRIBUTE_ACTIVE_PATTERN);
     }
 
     /**
      * Sets the given active pattern into the session.
+     * Clears the current step.
      *
      * @param input the {@link HandlerInput} request object to analyze
-     * @param activePattern the {@link ActivePatternUtilities} name to set
+     * @param activePattern the pattern key to set
      */
     public static void setActivePattern(HandlerInput input, String activePattern) {
 
         // Set the active pattern.
         input.getAttributesManager().getSessionAttributes().put(ATTRIBUTE_ACTIVE_PATTERN, activePattern);
+
+        // Clear the current step.
+        clearCurrentStep(input);
     }
 
     /**
      * Clears the active pattern in the session.
      * Unloads the pattern's movements.
+     * Clears the current step.
      *
      * @param input the {@link HandlerInput} request object to analyze
      */
@@ -58,5 +68,56 @@ public abstract class ActivePatternUtilities {
             // Clear the active pattern.
             input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_ACTIVE_PATTERN);
         }
+
+        // Clear the current step.
+        clearCurrentStep(input);
+    }
+
+    /*
+     * The current step
+     *
+     */
+
+    /**
+     * Gets the current step from the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @return the current step (an be {@code null})
+     */
+    public static Integer getCurrentStep(HandlerInput input) {
+
+        // If there is a current pattern, get the current step.
+        String activePatternKey = getActivePattern(input);
+        if (activePatternKey != null)
+            return (Integer) input.getAttributesManager().getSessionAttributes().get(ATTRIBUTE_CURRENT_STEP);
+        else
+            return null;
+    }
+
+    /**
+     * Sets the given current step into the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     * @param currentStep the current step to set
+     */
+    public static void setCurrentStep(HandlerInput input, Integer currentStep) {
+
+        // If there is a current pattern, set the current step.
+        String activePatternKey = getActivePattern(input);
+        if (activePatternKey != null)
+            input.getAttributesManager().getSessionAttributes().put(ATTRIBUTE_CURRENT_STEP, currentStep);
+        else
+            clearCurrentStep(input);
+    }
+
+    /**
+     * Clears the current step in the session.
+     *
+     * @param input the {@link HandlerInput} request object to analyze
+     */
+    public static void clearCurrentStep(HandlerInput input) {
+
+        // Clear the current step.
+        input.getAttributesManager().getSessionAttributes().remove(ATTRIBUTE_CURRENT_STEP);
     }
 }
