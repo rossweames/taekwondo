@@ -66,7 +66,7 @@ public class TeachPatternIntentHandler extends PatternIntentHandler {
     protected String doProcessing(Pattern pattern) {
 
         return new StringBuilder()
-                .append("O.K. I'll teach you ")
+                .append("Okay, I'll teach you ")
                 .append(pattern.getPhoneticName())
                 .append(". ")
                 .append(pattern.getStartMovement().getShortDescription())

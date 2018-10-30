@@ -48,7 +48,8 @@ public abstract class PatternUtilities {
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
         String patternKey = IntentUtilities.getSlotValue(input, PATTERN_SLOT, activePatternKey);
 
-        // The new pattern is different from the active pattern, so clear the active pattern before  switching patterns.
+        // There is an active pattern, and new pattern is different from the active pattern,
+        // so clear the active pattern before switching patterns.
         if ((activePatternKey != null) && !activePatternKey.equals(patternKey))
             ActivePatternUtilities.clearActivePattern(input);
 
@@ -56,8 +57,9 @@ public abstract class PatternUtilities {
         Pattern pattern = Patterns.getPatternByKey(patternKey);
         if (pattern != null) {
 
-            // Set the active pattern to this one.
-            ActivePatternUtilities.setActivePattern(input, pattern.getKey());
+            // The new pattern is different from the active pattern, so set the active pattern to the new one.
+            if (!patternKey.equals(activePatternKey))
+                ActivePatternUtilities.setActivePattern(input, patternKey);
 
             // Return the pattern.
             return pattern;

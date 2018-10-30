@@ -65,7 +65,7 @@ public class SelectPatternIntentHandler extends PatternIntentHandler {
     protected String doProcessing(Pattern pattern) {
 
         return new StringBuilder()
-                .append("O.K., I've selected the ")
+                .append("Okay, I've selected the ")
                 .append(pattern.getPhoneticName())
                 .append(" pattern.")
                 .toString();

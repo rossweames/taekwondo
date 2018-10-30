@@ -55,7 +55,7 @@ public class LaunchRequestHandler implements RequestHandler {
                 .append(")")
                 .toString());
 
-        String speechText = "Welcome to the TaeKwon-Do Patterns skill.";
+        String speechText = "Welcome to the Tie-Kwon-Doe Patterns skill.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)
