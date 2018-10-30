@@ -143,6 +143,53 @@
             "current pattern",
             "what is the current pattern"
           ]
+        },
+        {
+          "name": "AMAZON.NextIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.PreviousIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.RepeatIntent",
+          "samples": []
+        },
+        {
+          "name": "PatternStepDetailsIntent",
+          "slots": [],
+          "samples": [
+            "explain",
+            "details"
+          ]
+        },
+        {
+          "name": "TeachPatternIntent",
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName"
+            }
+          ],
+          "samples": [
+            "start practicing {TKDPattern}",
+            "start practicing",
+            "practice {TKDPattern}",
+            "start over",
+            "teach me {TKDPattern}",
+            "teach me "
+          ]
+        },
+        {
+          "name": "CurrentPatternStepIntent",
+          "slots": [],
+          "samples": [
+            "what is the current movement",
+            "current movement",
+            "what is the current step",
+            "current step"
+          ]
         }
       ],
       "types": [
@@ -517,8 +564,25 @@
               }
             }
           ]
+        },
+        {
+          "name": "TeachPatternIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "TKDPattern",
+              "type": "TKDPatternName",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.622378414079.1060205210225"
+              }
+            }
+          ]
         }
-      ]
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
     },
     "prompts": [
       {
@@ -577,6 +641,15 @@
       },
       {
         "id": "Elicit.Slot.1002711900121.1299582130651",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Which pattern?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.622378414079.1060205210225",
         "variations": [
           {
             "type": "PlainText",
