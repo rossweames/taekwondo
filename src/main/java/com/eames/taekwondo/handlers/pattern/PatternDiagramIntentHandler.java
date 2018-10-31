@@ -38,11 +38,12 @@ public class PatternDiagramIntentHandler extends PatternIntentHandler {
     /**
      * Processes the intent action and returns the answer speech text.
      *
+     * @param input the {@link HandlerInput} request object to process
      * @param pattern the {@link Pattern} to use
      * @return the speech text answer
      */
     @Override
-    protected String doProcessing(Pattern pattern) {
+    protected String doProcessing(HandlerInput input, Pattern pattern) {
 
         return new StringBuilder()
                 .append("The ")

@@ -1,13 +1,10 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.amazon.ask.model.Response;
 import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
@@ -40,30 +37,17 @@ public class TeachPatternIntentHandler extends PatternIntentHandler {
     }
 
     /**
-     * Gets called by the skill framework when there is something for this intent to do.
-     * Sets the current step to the start movement then calls the base class handler.
-     *
-     * @param input the {@link HandlerInput} request object to process
-     * @return a response containing either the answer speech text or a delegate directive
-     * telling the skill to ask for the pattern name
-     */
-    @Override
-    public Optional<Response> handle(HandlerInput input) {
-
-        // Set the current step to the start movement.
-        ActivePatternUtilities.setCurrentStep(input, 0);
-
-        // Call the base class handler.
-        return super.handle(input);
-    }
-
-    /**
      * Processes the intent action and returns the answer speech text.
      *
+     * @param input the {@link HandlerInput} request object to process
      * @param pattern the {@link Pattern} to use
      * @return the speech text answer
      */
-    protected String doProcessing(Pattern pattern) {
+    @Override
+    protected String doProcessing(HandlerInput input, Pattern pattern) {
+
+        // Set the current step to the start movement.
+        ActivePatternUtilities.setCurrentStep(input, 0);
 
         return new StringBuilder()
                 .append("Okay, I'll teach you ")

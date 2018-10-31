@@ -40,10 +40,12 @@ public class PatternStartingPositionIntentHandler extends PatternIntentHandler {
     /**
      * Processes the intent action and returns the answer speech text.
      *
+     * @param input the {@link HandlerInput} request object to process
      * @param pattern the {@link Pattern} to use
      * @return the speech text answer
      */
-    protected String doProcessing(Pattern pattern) {
+    @Override
+    protected String doProcessing(HandlerInput input, Pattern pattern) {
 
         return new StringBuilder()
                 .append("The ")

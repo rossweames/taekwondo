@@ -24,13 +24,22 @@ abstract class PatternIntentHandler extends IntentHandler {
     private static final Logger logger = LogManager.getLogger(PatternIntentHandler.class);
 
     /**
+     * Allows for pre-processing the intent action.
+     * Concrete child intents override this operation to perform any pre-processing activities.
+     *
+     * @param input the {@link HandlerInput} request object to process
+     */
+    protected void doPreProcessing(HandlerInput input) {}
+
+    /**
      * Processes the intent action and returns the answer speech text.
      * All concrete child intents must implement this operation to provide their answer.
      *
+     * @param input the {@link HandlerInput} request object to process
      * @param pattern the {@link Pattern} for which to provide the answer
      * @return the speech text answer for the pattern
      */
-    protected abstract String doProcessing(Pattern pattern);
+    protected abstract String doProcessing(HandlerInput input, Pattern pattern);
 
     /**
      * Gets called by the skill framework when there is something for this intent to do.
@@ -49,6 +58,9 @@ abstract class PatternIntentHandler extends IntentHandler {
                 .append(IntentUtilities.getDialogState(input).toString())
                 .toString());
 
+        // Perform any pre-processing acitvities.
+        doPreProcessing(input);
+
         // Construct a response builder and keep the session open.
         ResponseBuilder responseBuilder = input.getResponseBuilder()
                 .withShouldEndSession(false);
@@ -66,7 +78,7 @@ abstract class PatternIntentHandler extends IntentHandler {
                     .toString());
 
             // Add the speech text answer to the response.
-            responseBuilder.withSpeech(doProcessing(pattern));
+            responseBuilder.withSpeech(doProcessing(input, pattern));
 
         } catch (SlotNotFoundException ex) {
             // The skill is not configured with a pattern slot.
