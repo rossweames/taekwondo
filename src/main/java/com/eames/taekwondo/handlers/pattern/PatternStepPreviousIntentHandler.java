@@ -16,20 +16,20 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 /**
- * This is the handler for the 'current pattern' skill.
+ * This is the handler for the 'pattern previous step' skill.
  *
  * TODO: Need unit tests for this class.
  */
-public class CurrentPatternIntentHandler extends IntentHandler {
+public class PatternStepPreviousIntentHandler extends IntentHandler {
 
     // Initialize the Log4j logger.
-    private static final Logger logger = LogManager.getLogger(CurrentPatternIntentHandler.class);
+    private static final Logger logger = LogManager.getLogger(PatternStepPreviousIntentHandler.class);
 
     /**
      * Default Constructor
      */
-    public CurrentPatternIntentHandler() {
-        logger.debug("Constructing CurrentPatternIntentHandler");
+    public PatternStepPreviousIntentHandler() {
+        logger.debug("Constructing PatternStepPreviousIntentHandler");
     }
 
     /**
@@ -40,7 +40,7 @@ public class CurrentPatternIntentHandler extends IntentHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("CurrentPatternIntent"));
+        return input.matches(intentName("AMAZON.PreviousIntent"));
     }
 
     /**
@@ -54,7 +54,7 @@ public class CurrentPatternIntentHandler extends IntentHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         logger.debug(new StringBuilder()
-                .append("CurrentPatternIntentHandler (")
+                .append("PatternStepPreviousIntentHandler (")
                 .append(IntentUtilities.getRequestClassName(input))
                 .append("): dialogState=")
                 .append(IntentUtilities.getDialogState(input).toString())
@@ -76,13 +76,47 @@ public class CurrentPatternIntentHandler extends IntentHandler {
             // There is an active pattern.
             if (pattern != null) {
 
-                responseBuilder
-                        .withSpeech(new StringBuilder()
-                                .append("The currently selected pattern is ")
-                                .append(pattern.getPhoneticName())
-                                .append(".")
-                                .toString()
-                        );
+                // Get the current step.
+                Integer currentStep = ActivePatternUtilities.getCurrentStep(input);
+
+                // There is a current step.
+                if (currentStep != null) {
+
+                    // There are more steps in the pattern.
+                    if (currentStep > 0) {
+
+                        // Increment and update the current step.
+                        ActivePatternUtilities.setCurrentStep(input, --currentStep);
+
+                        responseBuilder
+                                .withSpeech(new StringBuilder()
+                                        .append(pattern.getNthMovement(currentStep).getShortDescription())
+                                        .toString()
+                                );
+                    }
+
+                    // There are no more steps.
+                    else {
+
+                        responseBuilder
+                                .withSpeech(new StringBuilder()
+                                        .append("We are at the starting position.")
+                                        .toString()
+                                );
+                    }
+                }
+
+                // There is no current step.
+                else {
+
+                    responseBuilder
+                            .withSpeech(new StringBuilder()
+                                    .append("We have not started the ")
+                                    .append(pattern.getPhoneticName())
+                                    .append(" pattern yet.")
+                                    .toString()
+                            );
+                }
             }
 
             // No such pattern.
@@ -91,13 +125,14 @@ public class CurrentPatternIntentHandler extends IntentHandler {
                 responseBuilder
                         .withSpeech("There is a problem with the selected pattern.");
             }
+
         }
 
         // There is no active pattern.
         else  {
 
             responseBuilder
-                    .withSpeech("There is no pattern selected.");
+                    .withSpeech("There is no pattern selected; please select one.");
         }
 
         // Build and return the response (keep the session open).

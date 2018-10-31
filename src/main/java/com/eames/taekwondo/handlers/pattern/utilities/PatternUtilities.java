@@ -36,24 +36,30 @@ public abstract class PatternUtilities {
             UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
         // First, grab the active pattern.
-        String activePattern = ActivePatternUtilities.getActivePattern(input);
+        String activePatternKey = ActivePatternUtilities.getActivePattern(input);
 
         logger.debug(new StringBuilder()
                 .append("activePattern=")
-                .append((activePattern != null) ? activePattern : "null")
+                .append((activePatternKey != null) ? activePatternKey : "null")
                 .toString());
 
         // Get the pattern key from the request.
         // Throws: SlotNotFoundException, MissingSlotValueException,
         //         UnrecognizedSlotValueException, UnexpectedSlotResolutionStatusException
-        String patternKey = IntentUtilities.getSlotValue(input, PATTERN_SLOT, activePattern);
+        String patternKey = IntentUtilities.getSlotValue(input, PATTERN_SLOT, activePatternKey);
+
+        // There is an active pattern, and new pattern is different from the active pattern,
+        // so clear the active pattern before switching patterns.
+        if ((activePatternKey != null) && !activePatternKey.equals(patternKey))
+            ActivePatternUtilities.clearActivePattern(input);
 
         // Get the TKD pattern from the name passed in.
         Pattern pattern = Patterns.getPatternByKey(patternKey);
         if (pattern != null) {
 
-            // Set the active pattern to this one.
-            ActivePatternUtilities.setActivePattern(input, pattern.getKey());
+            // The new pattern is different from the active pattern, so set the active pattern to the new one.
+            if (!patternKey.equals(activePatternKey))
+                ActivePatternUtilities.setActivePattern(input, patternKey);
 
             // Return the pattern.
             return pattern;

@@ -6,10 +6,22 @@
                 <pattern>%d{yyyy-MM-dd HH:mm:ss} %X{AWSRequestId} %-5p %c{1}:%L - %m</pattern>
             </PatternLayout>
         </Lambda>
+<!--
+        <ConsoleAppender name="Test">
+            <PatternLayout>
+                <pattern>%-5p %c{1}:%L - %m</pattern>
+            </PatternLayout>
+        </ConsoleAppender>
+-->
     </Appenders>
     <Loggers>
         <Root level="all">
             <AppenderRef ref="Lambda" />
         </Root>
+<!--
+        <Logger name="com.eames.taekwondo.model" level="debug">
+            <AppenderRef ref="Test" />
+        </Logger>
+-->
     </Loggers>
 </Configuration>

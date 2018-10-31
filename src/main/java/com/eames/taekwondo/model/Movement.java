@@ -2,6 +2,8 @@ package com.eames.taekwondo.model;
 
 /**
  * This enumeration represents a TKD pattern movement.
+ *
+ * TODO: Need to add the JSON annotations to the Movement class attributes.
  */
 public class Movement {
 
@@ -21,7 +23,7 @@ public class Movement {
      * @param shortDescription the short description
      * @param fullDescription the long description
      */
-    public Movement(String shortDescription, String fullDescription) {
+    Movement(String shortDescription, String fullDescription) {
         this.shortDescription = shortDescription;
         this.fullDescription = fullDescription;
     }
@@ -42,5 +44,16 @@ public class Movement {
      */
     public String getFullDescription() {
         return fullDescription;
+    }
+
+    /*
+     * Overridden {@link Object} operations
+     */
+
+    @Override
+    public String toString() {
+        return "Movement{" +
+                "shortDescription='" + shortDescription + '\'' +
+                '}';
     }
 }

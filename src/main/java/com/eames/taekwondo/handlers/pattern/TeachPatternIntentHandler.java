@@ -1,6 +1,7 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
+import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -8,20 +9,20 @@ import org.apache.logging.log4j.Logger;
 import static com.amazon.ask.request.Predicates.intentName;
 
 /**
- * This is the handler for the 'pattern history' skill.
+ * This is the handler for the 'teach pattern' skill.
  *
  * TODO: Need unit tests for this class.
  */
-public class PatternHistoryIntentHandler extends PatternIntentHandler {
+public class TeachPatternIntentHandler extends PatternIntentHandler {
 
     // Initialize the Log4j logger.
-    private static final Logger logger = LogManager.getLogger(PatternHistoryIntentHandler.class);
+    private static final Logger logger = LogManager.getLogger(TeachPatternIntentHandler.class);
 
     /**
      * Default Constructor
      */
-    public PatternHistoryIntentHandler() {
-        logger.debug("Constructing PatternHistoryIntentHandler");
+    public TeachPatternIntentHandler() {
+        logger.debug("Constructing TeachPatternIntentHandler");
     }
 
     /**
@@ -32,7 +33,7 @@ public class PatternHistoryIntentHandler extends PatternIntentHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("PatternHistoryIntent"));
+        return input.matches(intentName("TeachPatternIntent"));
     }
 
     /**
@@ -45,11 +46,14 @@ public class PatternHistoryIntentHandler extends PatternIntentHandler {
     @Override
     protected String doProcessing(HandlerInput input, Pattern pattern) {
 
+        // Set the current step to the start movement.
+        ActivePatternUtilities.setCurrentStep(input, 0);
+
         return new StringBuilder()
-                .append("The ")
+                .append("Okay, I'll teach you ")
                 .append(pattern.getPhoneticName())
-                .append(" pattern has the following history: ")
-                .append(pattern.getHistory())
+                .append(". ")
+                .append(pattern.getStartMovement().getShortDescription())
                 .toString();
     }
-}
+ }

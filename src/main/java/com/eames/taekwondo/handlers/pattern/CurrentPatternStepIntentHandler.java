@@ -16,20 +16,20 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 /**
- * This is the handler for the 'current pattern' skill.
+ * This is the handler for the 'current pattern step' skill.
  *
  * TODO: Need unit tests for this class.
  */
-public class CurrentPatternIntentHandler extends IntentHandler {
+public class CurrentPatternStepIntentHandler extends IntentHandler {
 
     // Initialize the Log4j logger.
-    private static final Logger logger = LogManager.getLogger(CurrentPatternIntentHandler.class);
+    private static final Logger logger = LogManager.getLogger(CurrentPatternStepIntentHandler.class);
 
     /**
      * Default Constructor
      */
-    public CurrentPatternIntentHandler() {
-        logger.debug("Constructing CurrentPatternIntentHandler");
+    public CurrentPatternStepIntentHandler() {
+        logger.debug("Constructing CurrentPatternStepIntentHandler");
     }
 
     /**
@@ -40,7 +40,7 @@ public class CurrentPatternIntentHandler extends IntentHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("CurrentPatternIntent"));
+        return input.matches(intentName("CurrentPatternStepIntent"));
     }
 
     /**
@@ -54,7 +54,7 @@ public class CurrentPatternIntentHandler extends IntentHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         logger.debug(new StringBuilder()
-                .append("CurrentPatternIntentHandler (")
+                .append("CurrentPatternSteIntentHandler (")
                 .append(IntentUtilities.getRequestClassName(input))
                 .append("): dialogState=")
                 .append(IntentUtilities.getDialogState(input).toString())
@@ -76,13 +76,45 @@ public class CurrentPatternIntentHandler extends IntentHandler {
             // There is an active pattern.
             if (pattern != null) {
 
-                responseBuilder
-                        .withSpeech(new StringBuilder()
-                                .append("The currently selected pattern is ")
-                                .append(pattern.getPhoneticName())
-                                .append(".")
-                                .toString()
-                        );
+                // Get the current step.
+                Integer currentStep = ActivePatternUtilities.getCurrentStep(input);
+
+                // There is a current step.
+                if (currentStep != null) {
+
+                    // get the current step's value.
+                    int stepValue = currentStep;
+
+                    // Construct the step message appropriately.
+                    StringBuilder sb = new StringBuilder()
+                        .append("We are currently on ");
+                    if (stepValue == 0)
+                        sb.append("the starting step ");
+                    else if (stepValue == pattern.getMovementCount() + 1)
+                        sb.append("the finishing step ");
+                    else {
+                        sb.append("step ")
+                            .append(currentStep);
+                    }
+                    sb.append(" of ")
+                        .append(pattern.getPhoneticName())
+                        .append(".");
+
+                    responseBuilder
+                        .withSpeech(sb.toString());
+                }
+
+                // There is no current step.
+                else {
+
+                    responseBuilder
+                            .withSpeech(new StringBuilder()
+                                    .append("We have not started the ")
+                                    .append(pattern.getPhoneticName())
+                                    .append(" pattern yet.")
+                                    .toString()
+                            );
+                }
             }
 
             // No such pattern.
