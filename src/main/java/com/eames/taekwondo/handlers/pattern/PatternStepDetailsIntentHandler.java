@@ -84,7 +84,7 @@ public class PatternStepDetailsIntentHandler extends IntentHandler {
 
                     responseBuilder
                             .withSpeech(new StringBuilder()
-                                    .append(pattern.getNthMovement(currentStep.intValue()).getFullDescription())
+                                    .append(pattern.getNthMovement(currentStep).getFullDescription())
                                     .toString()
                             );
                 }

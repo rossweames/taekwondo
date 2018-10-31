@@ -16,20 +16,20 @@ import java.util.Optional;
 import static com.amazon.ask.request.Predicates.intentName;
 
 /**
- * This is the handler for the 'pattern step details' skill.
+ * This is the handler for the 'pattern previous step' skill.
  *
  * TODO: Need unit tests for this class.
  */
-public class PatternStepRepeatIntentHandler extends IntentHandler {
+public class PatternStepPreviousIntentHandler extends IntentHandler {
 
     // Initialize the Log4j logger.
-    private static final Logger logger = LogManager.getLogger(PatternStepRepeatIntentHandler.class);
+    private static final Logger logger = LogManager.getLogger(PatternStepPreviousIntentHandler.class);
 
     /**
      * Default Constructor
      */
-    public PatternStepRepeatIntentHandler() {
-        logger.debug("Constructing PatternStepRepeatIntentHandler");
+    public PatternStepPreviousIntentHandler() {
+        logger.debug("Constructing PatternStepPreviousIntentHandler");
     }
 
     /**
@@ -40,7 +40,7 @@ public class PatternStepRepeatIntentHandler extends IntentHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("AMAZON.RepeatIntent"));
+        return input.matches(intentName("AMAZON.PreviousIntent"));
     }
 
     /**
@@ -54,7 +54,7 @@ public class PatternStepRepeatIntentHandler extends IntentHandler {
     public Optional<Response> handle(HandlerInput input) {
 
         logger.debug(new StringBuilder()
-                .append("PatternStepRepeatIntentHandler (")
+                .append("PatternStepPreviousIntentHandler (")
                 .append(IntentUtilities.getRequestClassName(input))
                 .append("): dialogState=")
                 .append(IntentUtilities.getDialogState(input).toString())
@@ -82,11 +82,28 @@ public class PatternStepRepeatIntentHandler extends IntentHandler {
                 // There is a current step.
                 if (currentStep != null) {
 
-                    responseBuilder
-                            .withSpeech(new StringBuilder()
-                                    .append(pattern.getNthMovement(currentStep).getShortDescription())
-                                    .toString()
-                            );
+                    // There are more steps in the pattern.
+                    if (currentStep > 0) {
+
+                        // Increment and update the current step.
+                        ActivePatternUtilities.setCurrentStep(input, --currentStep);
+
+                        responseBuilder
+                                .withSpeech(new StringBuilder()
+                                        .append(pattern.getNthMovement(currentStep).getShortDescription())
+                                        .toString()
+                                );
+                    }
+
+                    // There are no more steps.
+                    else {
+
+                        responseBuilder
+                                .withSpeech(new StringBuilder()
+                                        .append("We are at the starting position.")
+                                        .toString()
+                                );
+                    }
                 }
 
                 // There is no current step.
