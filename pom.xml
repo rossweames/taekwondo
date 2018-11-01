@@ -122,10 +122,11 @@
             <configuration>
               <artifactSet>
                 <excludes>
+                  <exclude>junit:junit</exclude>
                   <exclude>org.hamcrest:hamcrest-core</exclude>
                 </excludes>
               </artifactSet>
-              <minimizeJar>true</minimizeJar>
+              <!--<minimizeJar>true</minimizeJar>-->
             </configuration>
           </execution>
         </executions>
