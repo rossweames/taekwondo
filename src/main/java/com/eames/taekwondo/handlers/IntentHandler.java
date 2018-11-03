@@ -5,8 +5,6 @@ import com.amazon.ask.dispatcher.request.handler.RequestHandler;
 
 /**
  * This abstract class is the base class for all intent handlers for this skill.
- *
- * TODO: Need unit tests for this class.
  */
 public abstract class IntentHandler implements RequestHandler {
 

@@ -55,11 +55,8 @@ public class StopIntentHandler extends IntentHandler {
                 .append(IntentUtilities.getDialogState(input).toString())
                 .toString());
 
-        // TODO: This intent is not used yet.
-
-        String speechText = "There is nothing to stop.";
+        // Return a silent response and keep the session open.
         return input.getResponseBuilder()
-                .withSpeech(speechText)
                 .withShouldEndSession(false)
                 .build();
     }
