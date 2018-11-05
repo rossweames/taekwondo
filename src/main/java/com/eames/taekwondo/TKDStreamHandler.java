@@ -48,6 +48,7 @@ public class TKDStreamHandler extends SkillStreamHandler {
                         new PatternInfoIntentHandler(),
                         new PatternPracticeLevelIntentHandler(),
                         new PatternStartingPositionIntentHandler(),
+                        new PatternStepBriefIntentHandler(),
                         new PatternStepCountIntentHandler(),
                         new PatternStepDetailsIntentHandler(),
                         new PatternStepNextIntentHandler(),
