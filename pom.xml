@@ -49,6 +49,19 @@
       <artifactId>json-simple</artifactId>
       <version>1.1.1</version>
     </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <version>5.2.0</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.hamcrest</groupId>
+      <artifactId>hamcrest-junit</artifactId>
+      <version>2.0.0.0</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
@@ -106,6 +119,15 @@
             <goals>
               <goal>shade</goal>
             </goals>
+            <configuration>
+              <artifactSet>
+                <excludes>
+                  <exclude>junit:junit</exclude>
+                  <exclude>org.hamcrest:hamcrest-core</exclude>
+                </excludes>
+              </artifactSet>
+              <!--<minimizeJar>true</minimizeJar>-->
+            </configuration>
           </execution>
         </executions>
         <dependencies>

@@ -55,7 +55,7 @@ public class LaunchRequestHandler implements RequestHandler {
                 .append(")")
                 .toString());
 
-        String speechText = "Welcome to the Tie-Kwon-Doe Patterns skill.";
+        String speechText = "Welcome to the I.T.F. Tie-Kwon-Doe Master skill. You can say 'help' to get a list of actions.";
         return input.getResponseBuilder()
                 .withSpeech(speechText)
                 .withShouldEndSession(false)

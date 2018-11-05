@@ -1,10 +1,10 @@
 package com.eames.taekwondo.model;
 
-import org.junit.After;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 /**
  * Tests the {@link Pattern} class.
@@ -12,7 +12,7 @@ import static org.junit.Assert.assertNull;
  */
 public class PatternTest {
 
-    @After
+    @AfterEach
     public void tearDown() {
         Patterns.CHON_JI.clearMovements();
     }
