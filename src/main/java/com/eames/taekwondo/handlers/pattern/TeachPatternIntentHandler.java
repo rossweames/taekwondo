@@ -33,7 +33,8 @@ public class TeachPatternIntentHandler extends PatternIntentHandler {
      */
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("TeachPatternIntent"));
+        return (input.matches(intentName("TeachPatternIntent")) ||
+                input.matches(intentName("AMAZON.StartOverIntent")));
     }
 
     /**
