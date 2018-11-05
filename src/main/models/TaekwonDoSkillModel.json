@@ -1,7 +1,7 @@
 {
   "interactionModel": {
     "languageModel": {
-      "invocationName": "taekwondo patterns",
+      "invocationName": "tie kwon doe master",
       "intents": [
         {
           "name": "AMAZON.CancelIntent",
@@ -27,6 +27,7 @@
             }
           ],
           "samples": [
+            "steps in {TKDPattern}",
             "steps",
             "how many steps in {TKDPattern}"
           ]
@@ -43,6 +44,7 @@
             }
           ],
           "samples": [
+            "diagram for {TKDPattern}",
             "diagram",
             "what is the pattern diagram for {TKDPattern}"
           ]
@@ -59,6 +61,7 @@
             }
           ],
           "samples": [
+            "history of {TKDPattern}",
             "history",
             "what is the history of {TKDPattern}"
           ]
@@ -75,6 +78,7 @@
             }
           ],
           "samples": [
+            "belt for {TKDPattern}",
             "belt",
             "what is the belt for {TKDPattern}"
           ]
@@ -91,6 +95,7 @@
             }
           ],
           "samples": [
+            "info for {TKDPattern}",
             "info",
             "what is the info for {TKDPattern}"
           ]
@@ -123,6 +128,7 @@
             }
           ],
           "samples": [
+            "starting position for {TKDPattern}",
             "what is the starting position for {TKDPattern}",
             "starting position"
           ]
@@ -189,6 +195,18 @@
             "current movement",
             "what is the current step",
             "current step"
+          ]
+        },
+        {
+          "name": "AMAZON.StartOverIntent",
+          "samples": []
+        },
+        {
+          "name": "PatternStepBriefIntent",
+          "slots": [],
+          "samples": [
+            "short",
+            "brief"
           ]
         }
       ],
@@ -424,7 +442,7 @@
               "name": {
                 "value": "chonji",
                 "synonyms": [
-                  "Chon Ji",
+                  "chun-gee",
                   "ChonJi"
                 ]
               }
@@ -581,8 +599,7 @@
             }
           ]
         }
-      ],
-      "delegationStrategy": "SKILL_RESPONSE"
+      ]
     },
     "prompts": [
       {
