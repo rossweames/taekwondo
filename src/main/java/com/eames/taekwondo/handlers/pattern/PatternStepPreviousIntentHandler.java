@@ -4,10 +4,9 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.response.ResponseBuilder;
 import com.eames.taekwondo.handlers.IntentHandler;
-import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
 import com.eames.taekwondo.handlers.pattern.utilities.IntentUtilities;
-import com.eames.taekwondo.model.Pattern;
-import com.eames.taekwondo.model.Patterns;
+import com.eames.taekwondo.handlers.pattern.utilities.SessionAttributeUtilities;
+import com.eames.taekwondo.model.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -64,20 +63,20 @@ public class PatternStepPreviousIntentHandler extends IntentHandler {
         ResponseBuilder responseBuilder = input.getResponseBuilder()
                 .withShouldEndSession(false);
 
-        // First, grab the active pattern.
-        String activePattern = ActivePatternUtilities.getActivePattern(input);
+        // Grab the active pattern.
+        String activePattern = SessionAttributeUtilities.getActivePattern(input);
 
         // There is an active pattern.
         if (activePattern != null) {
 
-            // Get the TKD pattern from the active patter..
+            // Get the TKD pattern from the active pattern.
             Pattern pattern = Patterns.getPatternByKey(activePattern);
 
             // There is an active pattern.
             if (pattern != null) {
 
                 // Get the current step.
-                Integer currentStep = ActivePatternUtilities.getCurrentStep(input);
+                Integer currentStep = SessionAttributeUtilities.getCurrentStep(input);
 
                 // There is a current step.
                 if (currentStep != null) {
@@ -86,13 +85,40 @@ public class PatternStepPreviousIntentHandler extends IntentHandler {
                     if (currentStep > 0) {
 
                         // Increment and update the current step.
-                        ActivePatternUtilities.setCurrentStep(input, --currentStep);
+                        SessionAttributeUtilities.setCurrentStep(input, --currentStep);
 
-                        responseBuilder
-                                .withSpeech(new StringBuilder()
-                                        .append(pattern.getNthMovement(currentStep).getShortDescription())
-                                        .toString()
-                                );
+                        // Grab the teach mode.
+                        String teachModeKey = SessionAttributeUtilities.getTeachMode(input);
+
+                        // Get the teach mode from the teach mode key.
+                        TeachMode teachMode = TeachModes.getTeachModeByKey(teachModeKey);
+
+                        // There is a teachMode.
+                        if (teachMode != null) {
+
+                            // Get the appropriate movement.
+                            Movement movement = pattern.getNthMovement(currentStep);
+
+                            // Get the appropriate description from the movement.
+                            String description;
+                            if (teachMode == TeachModes.BRIEF)
+                                description = movement.getShortDescription();
+                            else
+                                description = movement.getFullDescription();
+
+                            responseBuilder
+                                    .withSpeech(new StringBuilder()
+                                            .append(description)
+                                            .toString()
+                                    );
+                        }
+
+                        // No such teach mode.
+                        else {
+
+                            responseBuilder
+                                    .withSpeech("There is a problem with the selected teaching mode.");
+                        }
                     }
 
                     // There are no more steps.
@@ -125,7 +151,6 @@ public class PatternStepPreviousIntentHandler extends IntentHandler {
                 responseBuilder
                         .withSpeech("There is a problem with the selected pattern.");
             }
-
         }
 
         // There is no active pattern.

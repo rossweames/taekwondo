@@ -4,7 +4,7 @@ import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.model.Response;
 import com.amazon.ask.response.ResponseBuilder;
 import com.eames.taekwondo.handlers.IntentHandler;
-import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
+import com.eames.taekwondo.handlers.pattern.utilities.SessionAttributeUtilities;
 import com.eames.taekwondo.handlers.pattern.utilities.IntentUtilities;
 import com.eames.taekwondo.model.Pattern;
 import com.eames.taekwondo.model.Patterns;
@@ -65,7 +65,7 @@ public class CurrentPatternIntentHandler extends IntentHandler {
                 .withShouldEndSession(false);
 
         // First, grab the active pattern.
-        String activePattern = ActivePatternUtilities.getActivePattern(input);
+        String activePattern = SessionAttributeUtilities.getActivePattern(input);
 
         // There is an active pattern.
         if (activePattern != null) {

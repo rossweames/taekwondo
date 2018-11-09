@@ -13,6 +13,8 @@ import java.util.Map;
 
 /**
  * Provides a set of utilities for working with intents.
+ *
+ * TODO: Need unit tests for this class.
  */
 public abstract class IntentUtilities {
 
