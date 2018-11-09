@@ -8,7 +8,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 /**
- * Provides a set of utilities for worhing with patterns.
+ * Provides a set of utilities for working with patterns.
+ *
+ * TODO: Need unit tests for this class.
  */
 public abstract class PatternUtilities {
 
@@ -36,7 +38,7 @@ public abstract class PatternUtilities {
             UnexpectedSlotResolutionStatusException, PatternNotFoundException {
 
         // First, grab the active pattern.
-        String activePatternKey = ActivePatternUtilities.getActivePattern(input);
+        String activePatternKey = SessionAttributeUtilities.getActivePattern(input);
 
         logger.debug(new StringBuilder()
                 .append("activePattern=")
@@ -51,7 +53,7 @@ public abstract class PatternUtilities {
         // There is an active pattern, and new pattern is different from the active pattern,
         // so clear the active pattern before switching patterns.
         if ((activePatternKey != null) && !activePatternKey.equals(patternKey))
-            ActivePatternUtilities.clearActivePattern(input);
+            SessionAttributeUtilities.clearActivePattern(input);
 
         // Get the TKD pattern from the name passed in.
         Pattern pattern = Patterns.getPatternByKey(patternKey);
@@ -59,7 +61,7 @@ public abstract class PatternUtilities {
 
             // The new pattern is different from the active pattern, so set the active pattern to the new one.
             if (!patternKey.equals(activePatternKey))
-                ActivePatternUtilities.setActivePattern(input, patternKey);
+                SessionAttributeUtilities.setActivePattern(input, patternKey);
 
             // Return the pattern.
             return pattern;

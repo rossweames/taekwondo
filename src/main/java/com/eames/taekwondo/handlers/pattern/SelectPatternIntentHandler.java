@@ -1,7 +1,7 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
+import com.eames.taekwondo.handlers.pattern.utilities.SessionAttributeUtilities;
 import com.eames.taekwondo.model.Pattern;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -45,7 +45,7 @@ public class SelectPatternIntentHandler extends PatternIntentHandler {
     protected void doPreProcessing(HandlerInput input) {
 
         // Clear the active pattern.
-        ActivePatternUtilities.clearActivePattern(input);
+        SessionAttributeUtilities.clearActivePattern(input);
     }
 
     /**

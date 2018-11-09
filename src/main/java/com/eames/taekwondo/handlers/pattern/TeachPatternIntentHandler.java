@@ -1,8 +1,11 @@
 package com.eames.taekwondo.handlers.pattern;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
-import com.eames.taekwondo.handlers.pattern.utilities.ActivePatternUtilities;
+import com.eames.taekwondo.handlers.pattern.utilities.SessionAttributeUtilities;
+import com.eames.taekwondo.model.Movement;
 import com.eames.taekwondo.model.Pattern;
+import com.eames.taekwondo.model.TeachMode;
+import com.eames.taekwondo.model.TeachModes;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -48,13 +51,39 @@ public class TeachPatternIntentHandler extends PatternIntentHandler {
     protected String doProcessing(HandlerInput input, Pattern pattern) {
 
         // Set the current step to the start movement.
-        ActivePatternUtilities.setCurrentStep(input, 0);
+        SessionAttributeUtilities.setCurrentStep(input, 0);
 
-        return new StringBuilder()
-                .append("Okay, I'll teach you ")
-                .append(pattern.getPhoneticName())
-                .append(". ")
-                .append(pattern.getStartMovement().getShortDescription())
-                .toString();
+        // Grab the teach mode.
+        String teachModeKey = SessionAttributeUtilities.getTeachMode(input);
+
+        // Get the teach mode from the teach mode key.
+        TeachMode teachMode = TeachModes.getTeachModeByKey(teachModeKey);
+
+        // There is a teachMode.
+        if (teachMode != null) {
+
+            // Get the appropriate movement.
+            Movement movement = pattern.getStartMovement();
+
+            // Get the appropriate description from the movement.
+            String description;
+            if (teachMode == TeachModes.BRIEF)
+                description = movement.getShortDescription();
+            else
+                description = movement.getFullDescription();
+
+            return new StringBuilder()
+                    .append("Okay, I'll teach you ")
+                    .append(pattern.getPhoneticName())
+                    .append(". ")
+                    .append(description)
+                    .toString();
+        }
+
+        // No such teach mode.
+        else {
+
+            return "There is a problem with the selected teaching mode.";
+        }
     }
  }
