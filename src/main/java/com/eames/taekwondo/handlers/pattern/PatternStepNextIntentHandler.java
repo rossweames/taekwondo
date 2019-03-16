@@ -87,38 +87,17 @@ public class PatternStepNextIntentHandler extends IntentHandler {
                         // Increment and update the current step.
                         SessionAttributeUtilities.setCurrentStep(input, ++currentStep);
 
-                        // Grab the teach mode.
-                        String teachModeKey = SessionAttributeUtilities.getTeachMode(input);
-
-                        // Get the teach mode from the teach mode key.
-                        TeachMode teachMode = TeachModes.getTeachModeByKey(teachModeKey);
-
-                        // There is a teachMode.
-                        if (teachMode != null) {
-
                             // Get the appropriate movement.
                             Movement movement = pattern.getNthMovement(currentStep);
 
                             // Get the appropriate description from the movement.
-                            String description;
-                            if (teachMode == TeachModes.BRIEF)
-                                description = movement.getShortDescription();
-                            else
-                                description = movement.getFullDescription();
+                            String description = movement.getDescription();
 
                             responseBuilder
                                     .withSpeech(new StringBuilder()
                                             .append(description)
                                             .toString()
                                     );
-                        }
-
-                        // No such teach mode.
-                        else {
-
-                            responseBuilder
-                                    .withSpeech("There is a problem with the selected teaching mode.");
-                        }
                     }
 
                     // There are no more steps.
