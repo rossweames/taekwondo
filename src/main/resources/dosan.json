@@ -2,111 +2,85 @@
   "history" : "Do-sahn is the pseudonym of the patriot Ahn-chong-ho. The twenty four movements represent his entire life, which he devoted to furthering the education of Korea, and its independence movement.",
   "start" :
   {
-    "shortDescription" : "Form a parallel ready stance on the intersection of the A.B. and C.D. lines, facing D..",
-    "fullDescription" : "Start in an attention stance on the intersection of the A.B. and C.D. lines, facing D.. Move the left foot to B, and form a parallel ready stance toward D.."
+    "description" : "Start in an attention stance on the intersection of the A.B. and C.D. lines, facing D.. Move the left foot to B to form a parallel ready stance toward D.."
   },
   "movements" :
   [
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to B. to form a left walking stance toward B. while executing a half-facing high side block to B. with the left outer forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to B. to form a left walking stance toward B. while executing a half-facing high side block to B. with the left outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a left walking stance toward B., execute a full-facing middle front punch to B. with the right fore-fist."
+      "description" : "While maintaining a left walking stance toward B., execute a full-facing middle front punch to B. with the right fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Prior to moving the body, move the ball of the left foot on the A.B. line, half a shoulder width toward D. and half a shoulder width toward A.. Then, while pivoting on the ball of the left foot and turning clockwise, move the right foot to A. to form a right walking stance toward A., while executing a half-facing high side block to A. with the right outer forearm."
+      "description" : "Prior to moving the body, move the ball of the left foot on the A.B. line, half a shoulder width toward D. and half a shoulder width toward A.. Then, while pivoting on the ball of the left foot and turning clockwise, move the right foot to A. to form a right walking stance toward A., while executing a half-facing high side block to A. with the right outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a right walking stance toward A., execute a full-facing middle front punch to A. with the left fore-fist."
+      "description" : "While maintaining a right walking stance toward A., execute a full-facing middle front punch to A. with the left fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Move the left foot to D. to form a right L-stance toward D., while executing a half-facing middle knife-hand guarding block to D.."
+      "description" : "Move the left foot to D. to form a right L-stance toward D., while executing a half-facing middle knife-hand guarding block to D.."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Move the right foot forward to D. to form a right walking stance toward D. while executing a full-facing middle front thrust to D. with the right straight fingertip, putting the back of the left fingertips under the right elbow."
+      "description" : "Move the right foot forward to D. to form a right walking stance toward D. while executing a full-facing middle front thrust to D. with the right straight fingertip, putting the back of the left fingertips under the right elbow."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivot on the balls of both feet until they face B.D., while twisting the right knife-hand together with the body counterclockwise in a releasing motion until the right palm faces downward. Then, while pivoting on the ball of the right foot and turning counterclockwise, move the left foot to D. to form a left walking stance toward D., while executing a half-facing high side strike to D. with the left back-fist."
+      "description" : "Pivot on the balls of both feet until they face B.D., while twisting the right knife-hand together with the body counterclockwise in a releasing motion until the right palm faces downward. Then, while pivoting on the ball of the right foot and turning counterclockwise, move the left foot to D. to form a left walking stance toward D., while executing a half-facing high side strike to D. with the left back-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Move the right foot forward to D. to form a right walking stance toward D., while executing a half-facing high side strike to D. with the right back-fist."
+      "description" : "Move the right foot forward to D. to form a right walking stance toward D., while executing a half-facing high side strike to D. with the right back-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to E. to form a left walking stance toward E., while executing a half-facing high side block to E with the left outer forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to E. to form a left walking stance toward E., while executing a half-facing high side block to E with the left outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a left walking stance toward E., execute a full-facing middle front punch to E. with the right fore-fist."
+      "description" : "While maintaining a left walking stance toward E., execute a full-facing middle front punch to E. with the right fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Prior to moving the body, move the ball of the left foot on the E.F. line, half a shoulder width toward C. and half a shoulder width toward F.. Then, while pivoting on the ball of the left foot and turning clockwise, move the right foot to F. to form a right walking stance toward F., while executing a half-facing high side block to F. with the right outer forearm."
+      "description" : "Prior to moving the body, move the ball of the left foot on the E.F. line, half a shoulder width toward C. and half a shoulder width toward F.. Then, while pivoting on the ball of the left foot and turning clockwise, move the right foot to F. to form a right walking stance toward F., while executing a half-facing high side block to F. with the right outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a right walking stance toward F., execute a full-facing middle front punch to F. with the left fore-fist."
+      "description" : "While maintaining a right walking stance toward F., execute a full-facing middle front punch to F. with the left fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to C.E. to form a left walking stance toward C.E., while executing a full-facing high wedging block to C.E. with the outer forearms."
+      "description" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to C.E. to form a left walking stance toward C.E., while executing a full-facing high wedging block to C.E. with the outer forearms."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Execute a middle front snap kick to C.E. with the ball of the right foot, while maintaining the full-facing high wedging block to C.E. with the outer forearms."
+      "description" : "Execute a middle front snap kick to C.E. with the ball of the right foot, while maintaining the full-facing high wedging block to C.E. with the outer forearms."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Lower the right foot to C.E. to form a right walking stance toward C.E., while executing a full-facing middle front punch to C.E. with the right fore-fist."
+      "description" : "Lower the right foot to C.E. to form a right walking stance toward C.E., while executing a full-facing middle front punch to C.E. with the right fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a right walking stance toward C.E., execute a full-facing middle front punch to C.E. with the left fore-fist."
+      "description" : "While maintaining a right walking stance toward C.E., execute a full-facing middle front punch to C.E. with the left fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While pivoting on the ball of the left foot and turning clockwise, move the right foot to C.F. to form a right walking stance toward C.F., while executing a full-facing high wedging block to C.F. with the outer forearms."
+      "description" : "While pivoting on the ball of the left foot and turning clockwise, move the right foot to C.F. to form a right walking stance toward C.F., while executing a full-facing high wedging block to C.F. with the outer forearms."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Execute a middle front snap kick to C.F. with the ball of the left foot, while maintaining the full-facing high wedging block to C.F. with the outer forearms."
+      "description" : "Execute a middle front snap kick to C.F. with the ball of the left foot, while maintaining the full-facing high wedging block to C.F. with the outer forearms."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Lower the left foot to C.F. to form a left walking stance toward C.F., while executing a full-facing middle front punch to C.F. with the left fore-fist."
+      "description" : "Lower the left foot to C.F. to form a left walking stance toward C.F., while executing a full-facing middle front punch to C.F. with the left fore-fist."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "While maintaining a left walking stance toward C.F., execute a full-facing middle front punch to C.F. with the right fore-fist. Perform the last two moves in a fast motion."
+      "description" : "While maintaining a left walking stance toward C.F., execute a full-facing middle front punch to C.F. with the right fore-fist. Perform the last two moves in a fast motion."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to C. to form a left walking stance toward C., while executing a full-facing rising block to C. with the left outer forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to C. to form a left walking stance toward C., while executing a full-facing rising block to C. with the left outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Move the right foot forward to C. to form a right walking stance toward C., while executing a full-facing rising block to C. with the right outer forearm."
+      "description" : "Move the right foot forward to C. to form a right walking stance toward C., while executing a full-facing rising block to C. with the right outer forearm."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to B. to form a sitting stance toward D., while executing a side-facing middle side strike to B. with the left knife-hand."
+      "description" : "Pivoting on the ball of the right foot and turning counterclockwise, move the left foot to B. to form a sitting stance toward D., while executing a side-facing middle side strike to B. with the left knife-hand."
     },
     {
-      "shortDescription" : "",
-      "fullDescription" : "Bring the ball of the left foot straight to the side of the right foot facing D.. Then, in an arching motion, move the right foot to A. to form a sitting stance toward D., while executing a side-facing middle side strike to A. with the right knife-hand."
+      "description" : "Bring the ball of the left foot straight to the side of the right foot facing D.. Then, in an arching motion, move the right foot to A. to form a sitting stance toward D., while executing a side-facing middle side strike to A. with the right knife-hand."
     }
   ],
   "finish" :
   {
-    "shortDescription" : "Return to a parallel ready stance facing D..",
-    "fullDescription" : "Bring the right foot toward the left foot to form a parallel ready stance toward D.."
+    "description" : "Bring the right foot toward the left foot to form a parallel ready stance toward D.."
   }
 }

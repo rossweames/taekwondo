@@ -8,33 +8,17 @@ package com.eames.taekwondo.model;
 public class Movement {
 
     /**
-     * The movement's short description.
+     * The movement's description.
      */
-    private String shortDescription;
-
-    /**
-     * The movement's full description.
-     */
-    private String fullDescription;
+    private String description;
 
     /**
      * Constructor
      *
-     * @param shortDescription the short description
-     * @param fullDescription the long description
+     * @param description the long description
      */
-    Movement(String shortDescription, String fullDescription) {
-        this.shortDescription = shortDescription;
-        this.fullDescription = fullDescription;
-    }
-
-    /**
-     * Gets the movement's short description.
-     *
-     * @return the short description
-     */
-    public String getShortDescription() {
-        return shortDescription;
+    Movement(String description) {
+        this.description = description;
     }
 
     /**
@@ -42,8 +26,8 @@ public class Movement {
      *
      * @return the full description
      */
-    public String getFullDescription() {
-        return fullDescription;
+    public String getDescription() {
+        return description;
     }
 
     /*
@@ -53,7 +37,7 @@ public class Movement {
     @Override
     public String toString() {
         return "Movement{" +
-                "shortDescription='" + shortDescription + '\'' +
+                "description='" + description + '\'' +
                 '}';
     }
 }

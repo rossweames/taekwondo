@@ -163,14 +163,6 @@
           "samples": []
         },
         {
-          "name": "PatternStepDetailsIntent",
-          "slots": [],
-          "samples": [
-            "explain",
-            "details"
-          ]
-        },
-        {
           "name": "TeachPatternIntent",
           "slots": [
             {
@@ -200,31 +192,6 @@
         {
           "name": "AMAZON.StartOverIntent",
           "samples": []
-        },
-        {
-          "name": "PatternStepBriefIntent",
-          "slots": [],
-          "samples": [
-            "short",
-            "brief"
-          ]
-        },
-        {
-          "name": "SelectTeachModeIntent",
-          "slots": [
-            {
-              "name": "TKDTeachMode",
-              "type": "TKDTeachMode"
-            }
-          ],
-          "samples": [
-            "change to {TKDTeachMode} mode",
-            "change to {TKDTeachMode}",
-            "use {TKDTeachMode} mode",
-            "use {TKDTeachMode}",
-            "switch to {TKDTeachMode} mode",
-            "switch to {TKDTeachMode}"
-          ]
         }
       ],
       "types": [
@@ -483,30 +450,6 @@
               }
             }
           ]
-        },
-        {
-          "name": "TKDTeachMode",
-          "values": [
-            {
-              "name": {
-                "value": "brief",
-                "synonyms": [
-                  "summary",
-                  "short"
-                ]
-              }
-            },
-            {
-              "name": {
-                "value": "detailed",
-                "synonyms": [
-                  "long",
-                  "full",
-                  "details"
-                ]
-              }
-            }
-          ]
         }
       ]
     },
@@ -639,24 +582,9 @@
               }
             }
           ]
-        },
-        {
-          "name": "SelectTeachModeIntent",
-          "confirmationRequired": false,
-          "prompts": {},
-          "slots": [
-            {
-              "name": "TKDTeachMode",
-              "type": "TKDTeachMode",
-              "confirmationRequired": false,
-              "elicitationRequired": true,
-              "prompts": {
-                "elicitation": "Elicit.Slot.98079243382.335844159111"
-              }
-            }
-          ]
         }
-      ]
+      ],
+      "delegationStrategy": "SKILL_RESPONSE"
     },
     "prompts": [
       {
@@ -728,15 +656,6 @@
           {
             "type": "PlainText",
             "value": "Which pattern?"
-          }
-        ]
-      },
-      {
-        "id": "Elicit.Slot.98079243382.335844159111",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Which mode?"
           }
         ]
       }

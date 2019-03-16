@@ -2,91 +2,70 @@
   "history" : "Chun-gee means literally the Heaven, the Earth. In the Orient, it is interpreted as the creation of the world, or the beginning of human history. Therefore, it is the initial pattern played by the beginner. This pattern consists of two similar parts; one representing Heaven, and the other representing Earth.",
   "start" :
     {
-      "shortDescription" : "Form a parallel ready stance on the intersection of the A.B. and C.D. lines, facing D..",
-      "fullDescription" : "Start in an attention stance on the intersection of the A.B. and C.D. lines, facing D.. Move the left foot to B, and form a parallel ready stance toward D.."
+      "description" : "Start in an attention stance on the intersection of the A.B. and C.D. lines, facing D.. Move the left foot to B to form a parallel ready stance toward D.."
     },
   "movements" :
   [
     {
-      "shortDescription" : "Form a left walking stance toward B. while executing a left low outer forearm block.",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to B. to form a left walking stance toward B. while executing a half-facing low block to B. with the left outer forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to B to form a left walking stance toward B while executing a half-facing low block to B with the left outer forearm."
     },
     {
-      "shortDescription" : "Form a right walking stance toward B. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot forward to B. to form a right walking stance toward B while executing a full-facing middle front punch to B. with the right fore-fist."
+      "description" : "Move the right foot forward to B to form a right walking stance toward B while executing a full-facing middle front punch to B with the right fore-fist."
     },
     {
-      "shortDescription" : "Form a right walking stance toward A. while executing a right low outer forearm block.",
-      "fullDescription" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to A. to form a right walking stance toward A. while executing a half-facing low block to A. with the right outer forearm."
+      "description" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to A to form a right walking stance toward A while executing a half-facing low block to A with the right outer forearm."
     },
     {
-      "shortDescription" : "Form a left walking stance toward A. while executing a left middle front fore-fist punch.",
-      "fullDescription" : "Move the left foot toward A. to form a left walking stance toward A. while executing a full-facing middle front punch to A. with the left fore-fist."
+      "description" : "Move the left foot toward A to form a left walking stance toward A while executing a full-facing middle front punch to A with the left fore-fist."
     },
     {
-      "shortDescription" : "Form a left walking stance toward D. while executing a left low outer forearm block.",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to D. to form a left walking stance toward D. while executing a half-facing low block to D. with the left outer forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to D to form a left walking stance toward D while executing a half-facing low block to D with the left outer forearm."
     },
     {
-      "shortDescription" : "Form a right walking stance toward D. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot forward to D. to form a right walking stance toward D. while executing a full-facing middle front punch to D. with the right fore-fist."
+      "description" : "Move the right foot forward to D to form a right walking stance toward D while executing a full-facing middle front punch to D with the right fore-fist."
     },
     {
-      "shortDescription" : "Form a right walking stance toward C. while executing a right low outer forearm block.",
-      "fullDescription" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to C. to form a right walking stance toward C. while executing a half-facing low block to C. with the right outer forearm."
+      "description" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to C to form a right walking stance toward C while executing a half-facing low block to C with the right outer forearm."
     },
     {
-      "shortDescription" : "Form a left walking stance toward C. while executing a left middle front fore-fist punch.",
-      "fullDescription" : "Move the left foot forward to C. to form a left walking stance toward C. while executing a full-facing middle front punch to C. with the left fore-fist."
+      "description" : "Move the left foot forward to C to form a left walking stance toward C while executing a full-facing middle front punch to C with the left fore-fist."
     },
     {
-      "shortDescription" : "Form a right L-stance toward A. while executing a left middle inner forearm side block.",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to A. to form a right L-stance toward A. while executing a half-facing middle side block to A. with the left inner forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to A to form a right L-stance toward A while executing a half-facing middle side block to A with the left inner forearm."
     },
     {
-      "shortDescription" : "Form a right walking stance toward A. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot forward to A. to form a right walking stance toward A. while executing a full-facing middle front punch to A. with the right fore-fist."
+      "description" : "Move the right foot forward to A to form a right walking stance toward A while executing a full-facing middle front punch to A with the right fore-fist."
     },
     {
-      "shortDescription" : "Form a left L-stance toward B. while executing a right middle inner forearm side block.",
-      "fullDescription" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to B. to form a left L-stance toward B. while executing a full-facing middle side block to B. with the right inner forearm."
+      "description" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to B to form a left L-stance toward B while executing a full-facing middle side block to B with the right inner forearm."
     },
     {
-      "shortDescription" : "Form a left walking stance toward B. while executing a left middle front fore-fist punch.",
-      "fullDescription" : "Move the left foot forward to B. to form a left walking stance toward B while executing a full-facing middle front punch to B. with the left fore-fist."
+      "description" : "Move the left foot forward to B to form a left walking stance toward B while executing a full-facing middle front punch to B with the left fore-fist."
     },
     {
-      "shortDescription" : "Form a right L-stance toward C. while executing a left middle inner forearm side block.",
-      "fullDescription" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to C. to form a right L-stance toward C. while executing a half-facing middle side block to C. with the left inner forearm."
+      "description" : "Pivoting on the ball of the right foot and turning counter-clockwise, move the left foot to C to form a right L-stance toward C while executing a half-facing middle side block to C with the left inner forearm."
     },
     {
-      "shortDescription" : "Form a right walking stance toward C. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot forward to C. to form a right walking stance toward C. while executing a full-facing middle front punch to C. with the right fore-fist."
+      "description" : "Move the right foot forward to C to form a right walking stance toward C while executing a full-facing middle front punch to C with the right fore-fist."
     },
     {
-      "shortDescription" : "Form a left L-stance toward D. while executing a right middle inner forearm side block.",
-      "fullDescription" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to D. to form a left L-stance toward D. while executing a half-facing middle side block to D. with the right inner forearm."
+      "description" : "Pivoting on the ball of the left foot and turning clockwise, move the right foot to D to form a left L-stance toward D while executing a half-facing middle side block to D with the right inner forearm."
     },
     {
-      "shortDescription" : "Form a left walking stance toward D. while executing a left middle front fore-fist punch.",
-      "fullDescription" : "Move the left foot forward to D. to form a left walking stance toward D. while executing a full-facing middle front punch to D. with the left fore-fist."
+      "description" : "Move the left foot forward to D to form a left walking stance toward D while executing a full-facing middle front punch to D with the left fore-fist."
     },
     {
-      "shortDescription" : "Form a right walking stance toward D. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot forward to D. to form a right walking stance toward D. while executing a full-facing middle front punch to D. with the right fore-fist."
+      "description" : "Move the right foot forward to D to form a right walking stance toward D while executing a full-facing middle front punch to D with the right fore-fist."
     },
     {
-      "shortDescription" : "Moving backward, form a left walking stance toward D. while executing a left middle front fore-fist punch.",
-      "fullDescription" : "Move the right foot backward to C. to form a left walking stance toward D. while executing a full-facing middle front punch to D. with the left fore-fist."
+      "description" : "Move the right foot backward to C to form a left walking stance toward D while executing a full-facing middle front punch to D with the left fore-fist."
     },
     {
-      "shortDescription" : "Moving backward, form a right walking stance toward D. while executing a right middle front fore-fist punch.",
-      "fullDescription" : "Move the left foot backward to C. to form a right walking stance toward D. while executing a full-facing middle front punch to D. with the right fore-fist."
+      "description" : "Move the left foot backward to C to form a right walking stance toward D while executing a full-facing middle front punch to D with the right fore-fist."
     }
   ],
   "finish" :
   {
-    "shortDescription" : "Return to a parallel ready stance facing D..",
-    "fullDescription" : "Bring the left foot forward onto the A.B. line to return to a parallel ready stance facing D.."
+    "description" : "Bring the left foot forward onto the A.B. line to return to a parallel ready stance facing D.."
   }
 }
