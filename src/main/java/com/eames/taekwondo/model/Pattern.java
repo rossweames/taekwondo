@@ -34,8 +34,7 @@ public class Pattern extends SkillEntity {
     private static final String JSON_START_KEY = "start";
     private static final String JSON_MOVEMENTS_KEY = "movements";
     private static final String JSON_FINISH_KEY = "finish";
-    private static final String JSON_SHORT_DESCRIPTION_KEY = "shortDescription";
-    private static final String JSON_FULL_DESCRIPTION_KEY = "fullDescription";
+    private static final String JSON_DESCRIPTION_KEY = "description";
 
     // Initialize the Log4j logger.
     private static final Logger logger = LogManager.getLogger(Pattern.class);
@@ -392,8 +391,7 @@ public class Pattern extends SkillEntity {
      */
     private Movement createMovement(JSONObject element) {
 
-        return new Movement((String) element.get(JSON_SHORT_DESCRIPTION_KEY),
-                (String) element.get(JSON_FULL_DESCRIPTION_KEY));
+        return new Movement((String) element.get(JSON_DESCRIPTION_KEY));
     }
 
     /*

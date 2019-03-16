@@ -81,38 +81,17 @@ public class PatternStepRepeatIntentHandler extends IntentHandler {
                 // There is a current step.
                 if (currentStep != null) {
 
-                    // Grab the teach mode.
-                    String teachModeKey = SessionAttributeUtilities.getTeachMode(input);
+                    // Get the appropriate movement.
+                    Movement movement = pattern.getNthMovement(currentStep);
 
-                    // Get the teach mode from the teach mode key.
-                    TeachMode teachMode = TeachModes.getTeachModeByKey(teachModeKey);
+                    // Get the movement's description.
+                    String description= movement.getDescription();
 
-                    // There is a teachMode.
-                    if (teachMode != null) {
-
-                        // Get the appropriate movement.
-                        Movement movement = pattern.getNthMovement(currentStep);
-
-                        // Get the appropriate description from the movement.
-                        String description;
-                        if (teachMode == TeachModes.BRIEF)
-                            description = movement.getShortDescription();
-                        else
-                            description = movement.getFullDescription();
-
-                        responseBuilder
-                                .withSpeech(new StringBuilder()
-                                        .append(description)
-                                        .toString()
-                                );
-                    }
-
-                    // No such teach mode.
-                    else {
-
-                        responseBuilder
-                                .withSpeech("There is a problem with the selected teaching mode.");
-                    }
+                    responseBuilder
+                            .withSpeech(new StringBuilder()
+                                    .append(description)
+                                    .toString()
+                            );
                 }
 
                 // There is no current step.
